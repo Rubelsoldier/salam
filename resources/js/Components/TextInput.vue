@@ -7,6 +7,7 @@ const model = defineModel({
 });
 
 const input = ref(null);
+const placeholder = ref('Enter your text here');
 
 onMounted(() => {
     if (input.value.hasAttribute('autofocus')) {
@@ -22,5 +23,6 @@ defineExpose({ focus: () => input.value.focus() });
         class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
         v-model="model"
         ref="input"
+        :placeholder="placeholder"
     />
 </template>
