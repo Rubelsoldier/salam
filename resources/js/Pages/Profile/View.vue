@@ -7,6 +7,12 @@
             >
                 Your cover image has been updated
             </div>
+            <div
+                v-if="errors.cover"
+                class="my-2 py-2 px-3 font-medium text-sm bg-red-400 text-white"
+            >
+                {{ errors.cover }}
+            </div>
             <div class="group relative bg-white">
                 <img :src="coverImageSrc || user.cover_url || '/img/default_cover.jpg'"
                     class="w-full h-[200px] object-cover">
@@ -47,7 +53,8 @@
 
                 <div class="flex">
                     <img src="https://randomuser.me/api/portraits/women/82.jpg"
-                        class="ml-[48px] w-[128px] h-[128px] -mt-[64px]">
+                        class="ml-[48px] w-[128px] h-[128px] -mt-[64px] rounded"
+                    >
                     <div class="flex justify-between items-center flex-1 p-4">
                         <h2 class="font-bold text-lg">{{ user.name }}</h2>
                         <PrimaryButton v-if="isMyProfile">

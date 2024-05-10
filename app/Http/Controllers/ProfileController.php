@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -74,13 +75,15 @@ class ProfileController extends Controller
         $cover = $data['cover'] ?? null;
 
         if ($cover) {
-            $path = $cover->store('avatars/'.$user->id, 'public');
+            if ($user->cover_path) {
+                Storage::disk('public')->delete($user->cover_path);
+            }
+            $path = $cover->store('user-'.$user->id, 'public');
             $user->update(['cover_path' => $path]);
         }
         
         session('success', 'Cover image has been updated');
 
         return back()->with('status', 'cover-image-update');
-
     }
 }
