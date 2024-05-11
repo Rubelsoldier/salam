@@ -95,6 +95,7 @@ class ProfileController extends Controller
             $success = 'Your avatar image was updated';  
         }
         
-        return back()->with('success', $success);
+        return to_route('profile', $request->user())->with('success', $success);
+
     }
 }

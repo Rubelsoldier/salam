@@ -4,7 +4,7 @@
             <div 
                 v-show="showNotification && success"
                 class="my-2 py-2 px-3 font-medium text-sm bg-emerald-500 text-white">
-                {{ success }}
+                 {{ localSuccess }}                                
             </div>
             <div v-if="errors.cover" class="my-2 py-2 px-3 font-medium text-sm bg-red-400 text-white">
                 {{ errors . cover }}
@@ -123,7 +123,8 @@
 
     import {
         computed,
-        ref
+        ref,
+        watch
     } from 'vue'
     import {
         XMarkIcon,
@@ -144,7 +145,7 @@
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
     import TabItem from "@/Pages/Profile/Partials/TabItem.vue";
     import Edit from "@/Pages/Profile/Edit.vue";
-    import PrimaryButton from "@/Components/PrimaryButton.vue";
+    
 
     // Uses 
     const imagesForm = useForm({
@@ -157,6 +158,7 @@
     const isMyProfile = computed(() => authUser && authUser.id === props.user.id)
     const coverImageSrc = ref('')
     const avatarImageSrc = ref('')
+    const localSuccess = ref(false);
 
     // Props & Emits 
     const props = defineProps({
@@ -174,6 +176,22 @@
             type: Object
         }
     });
+
+    // Methods 
+
+    watch(() => props.success, (newVal) => {
+        localSuccess.value = newVal;   
+        if (showNotification && newVal) {
+            hideNotification();
+        }
+    });
+
+    const hideNotification = () => {
+        showNotification.value = true;
+        setTimeout(() => {
+        showNotification.value = false;
+        }, 2000);
+    };
 
     function onCoverChange(event) {
         imagesForm.cover = event.target.files[0]
@@ -208,25 +226,19 @@
     }
 
     function submitCoverImage() {
-        showNotification.value = true;
         imagesForm.post(route('profile.updateImages'), {
             onSuccess: (user) => {
                 resetCoverImage()
-                setTimeout(() => {
-                    showNotification.value = false
-                }, 2000)
+                hideNotification();
             },
         })
     }
 
     function submitAvatarImage() {
-        showNotification.value = true;
         imagesForm.post(route('profile.updateImages'), {
             onSuccess: (user) => {
                 resetAvatarImage()
-                setTimeout(() => {
-                    showNotification.value = false
-                }, 2000)
+                hideNotification();
             }
         })
     }
