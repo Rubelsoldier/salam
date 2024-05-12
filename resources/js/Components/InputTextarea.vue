@@ -17,22 +17,30 @@ const emit = defineEmits(['update:modelValue']);
 
 const input = ref(null);
 
-onMounted(() => {
-    if (input.value.hasAttribute('autofocus')) {
-        input.value.focus();
-    }
-});
 
 defineExpose({focus: () => input.value.focus()});
 
 function onInputChange($event) {
     emit('update:modelValue', $event.target.value)
+    adjustHeight()    
+}
 
+function adjustHeight(){
     if (props.autoResize) {
         input.value.style.height = 'auto';
         input.value.style.height = input.value.scrollHeight + 'px';
     }
 }
+// Mounted 
+onMounted(() => {
+    adjustHeight()
+})
+
+onMounted(() => {
+    if (input.value.hasAttribute('autofocus')) {
+        input.value.focus();
+    }
+});
 </script>
 
 <template>
