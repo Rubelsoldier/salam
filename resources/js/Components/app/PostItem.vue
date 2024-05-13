@@ -79,7 +79,6 @@
         </div>
         <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 mb-3">
             <template v-for="attachment of post.attachments">
-
                 <div
                     class="group aspect-square bg-blue-100 flex flex-col items-center justify-center text-gray-500 relative">
                     <!-- Download-->
@@ -138,9 +137,9 @@
 import {Menu, MenuButton, MenuItems, MenuItem} from '@headlessui/vue'
 import {PencilIcon, TrashIcon, EllipsisVerticalIcon} from '@heroicons/vue/20/solid'
 import {Disclosure, DisclosureButton, DisclosurePanel} from '@headlessui/vue'
-import {ref} from "vue";
 import PostUserHeader from "@/Components/app/PostUserHeader.vue";
 import { router } from '@inertiajs/vue3'
+import {isImage} from '../../helper'
 
 // Refs 
 
@@ -152,11 +151,6 @@ const props = defineProps({
 const emit = defineEmits(['editClick'])
 
 // Methods 
-function isImage(attachment) {
-    const mime = attachment.mime.split('/')
-    return mime[0].toLowerCase() === 'image'
-}
-
 function openEditModal(){
     emit('editClick', props.post)
 }
