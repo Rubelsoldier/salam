@@ -10,6 +10,9 @@ reading from file system. Without having proper access, no one can access this u
 
 > file name in attachment, if it becomes big, it overflows the attachment area. 
 
+> for above 1 G post, validation message is not working. Zura sugggested to increase max post size little 
+bit more.
+
 ====== To fix =====
 My profile details updated commit, need to fix the notificaiton bar. It's not 
 disappearing. 
