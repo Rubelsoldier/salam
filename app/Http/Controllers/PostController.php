@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Comment;
 use App\Models\PostReaction;
 use Illuminate\Http\Request;
 use App\Models\PostAttachment;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Enums\PostReactionEnum;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorePostRequest;
+use App\Http\Resources\CommentResource;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UpdatePostRequest;
 
@@ -160,5 +162,21 @@ class PostController extends Controller
         ]);
 
         }
+
+        
+    public function createComment(Request $request, Post $post)
+    {
+        $data = $request->validate([
+            'comment' => ['required']
+        ]);
+
+        $comment = Comment::create([
+            'post_id' => $post->id,
+            'comment' => nl2br($data['comment']),
+            'user_id' => Auth::id()
+        ]);
+
+        return response(new CommentResource($comment), 201);        
+    }
 
 }
