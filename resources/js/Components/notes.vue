@@ -17,4 +17,5 @@ bit more.
 My profile details updated commit, need to fix the notificaiton bar. It's not 
 disappearing. 
 
-
+================ Commands used in this project =============
+php artisan make:migration add_parent_id_to_comments
