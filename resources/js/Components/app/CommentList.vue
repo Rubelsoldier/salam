@@ -10,6 +10,7 @@ import axiosClient from "@/axiosClient.js";
 import {Disclosure, DisclosureButton, DisclosurePanel} from "@headlessui/vue";
 
 const authUser = usePage().props.auth.user;
+const emit = defineEmits(['commentCreate', 'commentDelete']);
 
 const newCommentText = ref('')
 const editingComment = ref(null);
@@ -23,10 +24,7 @@ const props = defineProps({
     }
 })
 
-const emit = defineEmits(['commentCreate', 'commentDelete']);
-
 function startCommentEdit(comment) {
-    console.log(comment)
     editingComment.value = {
         id: comment.id,
         comment: comment.comment.replace(/<br\s*\/?>/gi, '\n') // <br />, <br > <br> <br/>, <br    />
@@ -177,16 +175,12 @@ function onCommentDelete(comment) {
                         </DisclosureButton>
                     </div>                    
                     <DisclosurePanel class="mt-3">
-                        <!-- <CommentList :post="post"
+                        <CommentList :post="post"
                                      :data="{comments: comment.comments}"
                                      :parent-comment="comment"
                                      @comment-create="onCommentCreate"
-                                     @comment-delete="onCommentDelete"/> -->
-                            <CommentList :post="post" 
-                                          :data="{comments: comment.comments}"
-                                          :parent-id="comment.id"
-                                          :parent-comment="comment"
-                            />                            
+                                     @comment-delete="onCommentDelete"
+                        />                                                    
                     </DisclosurePanel>
                 </Disclosure>
             </div>
