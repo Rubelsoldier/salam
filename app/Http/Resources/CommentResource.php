@@ -21,15 +21,16 @@ class CommentResource extends JsonResource
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
             'num_of_reactions' => $this->reactions_count,
+            'num_of_comments' => $this->numOfComments,
             'current_user_has_reaction' => $this->reactions->count() > 0,
+            'comments' => $this->childComments,
             'user' => [
                 "id" => $this->user->id,
                 "name" => $this->user->name,
                 "username" => $this->user->username,
                 "avatar_url" => $this->user->avatar_path ? Storage::url($this->user->avatar_path) : '/img/default_avatar.webp',
 
-            ],
-            'test' => 'test'
+            ]
         ];
     }
 }
