@@ -17,5 +17,6 @@ bit more.
 My profile details updated commit, need to fix the notificaiton bar. It's not 
 disappearing. 
 
+deleting comment and its sub comments doesn't decrease total comment number 
 ================ Commands used in this project =============
 php artisan make:migration add_parent_id_to_comments
