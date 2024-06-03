@@ -11,7 +11,9 @@
         <div class="grid gap-3 mb-3" :class="[
             post.attachments.length === 1 ? 'grid-cols-1' : 'grid-cols-2'
         ]">
-            <template v-for="(attachment, ind) of post.attachments.slice(0, 4)">
+            <template v-for="(attachment, ind) of post.attachments.slice(0, 4)"
+                      :key="ind"
+            >
 
                 <div @click="openAttachment(ind)"
                      class="group aspect-square bg-blue-100 flex flex-col items-center justify-center text-gray-500 relative cursor-pointer">
