@@ -39,6 +39,7 @@ const searchKeyword = ref('')
 
 
 function onGroupCreate(group) {
+    console.log('group '+group.id);
     props.groups.unshift(group)
 }
 
