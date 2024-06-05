@@ -24,7 +24,10 @@ use App\Http\Controllers\GroupController;
         ->name('profile.updateImages');
         
     Route::post('/group/update-images/{group:slug}', [GroupController::class, 'updateImage'])
-    ->name('group.updateImages');    
+        ->name('group.updateImages');    
+
+    Route::post('/group/invite/{group:slug}', [GroupController::class, 'inviteUsers'])
+        ->name('group.inviteUsers');
 
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Group;
 use App\Models\GroupUser;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Enums\GroupUserRole;
 use App\Http\Enums\GroupUserStatus;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\GroupResource;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreGroupRequest;
+use App\Http\Requests\InviteUsersRequest;
 use App\Http\Requests\UpdateGroupRequest;
 
 class GroupController extends Controller
@@ -89,6 +92,37 @@ class GroupController extends Controller
 
 
         return response(new GroupResource($group), 201);
+    }
+    
+    public function inviteUsers(InviteUsersRequest $request, Group $group)
+    {
+        $data = $request->validated();
+
+        $user = $request->user;
+
+        $groupUser = $request->groupUser;
+
+        if ($groupUser) {
+            $groupUser->delete();
+        }
+
+        $hours = 24;
+        $token = Str::random(256);
+
+        GroupUser::create([
+            'status' => GroupUserStatus::PENDING->value,
+            'role' => GroupUserRole::USER->value,
+            'token' => $token,
+            'token_expire_date' => Carbon::now()->addHours($hours),
+            'user_id' => $user->id,
+            'group_id' => $group->id,
+            'created_by' => Auth::id(),
+        ]);
+
+        // $user->notify(new InvitationInGroup($group, $hours, $token));
+
+
+        return back()->with('success', 'User was invited to join to group');
     }
 
     /**
