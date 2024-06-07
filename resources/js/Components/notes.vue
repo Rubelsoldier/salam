@@ -21,6 +21,8 @@ deleting comment and its sub comments doesn't decrease total comment number
 
 deleting post is not working 
 
+In a group, invite user button modal, cancel button is not working. 
+
 ================ Commands used in this project =============
 php artisan make:migration add_parent_id_to_comments
 
