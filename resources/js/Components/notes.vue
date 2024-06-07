@@ -27,3 +27,5 @@ php artisan make:migration add_parent_id_to_comments
 php artisan make:controller GroupController --model=Group --api --requests --resource
 
 php artisan make:resource GroupResource
+
+php artisan make:notification InvitationInGroup

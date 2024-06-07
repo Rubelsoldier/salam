@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\GroupResource;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreGroupRequest;
+use App\Notifications\InvitationInGroup;
 use App\Http\Requests\InviteUsersRequest;
 use App\Http\Requests\UpdateGroupRequest;
+use App\Notifications\InvitationApproved;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class GroupController extends Controller
 {
@@ -119,11 +122,42 @@ class GroupController extends Controller
             'created_by' => Auth::id(),
         ]);
 
-        // $user->notify(new InvitationInGroup($group, $hours, $token));
-
+        $user->notify(new InvitationInGroup($group, $hours, $token));
 
         return back()->with('success', 'User was invited to join to group');
     }
+
+    public function approveInvitation(string $token)
+    {
+        $groupUser = GroupUser::query()
+            ->where('token', $token)
+            ->first();
+
+        $errorTitle = '';
+        if (!$groupUser) {
+            $errorTitle = 'The link is not valid';
+        } else if ($groupUser->token_used || $groupUser->status === GroupUserStatus::APPROVED->value) {
+            $errorTitle = 'The link is already used';
+        } else if ($groupUser->token_expire_date < Carbon::now()) {
+            $errorTitle = 'The link is expired';
+        }
+
+        if ($errorTitle) {
+            // return \inertia('Error', compact('errorTitle'));
+            return \inertia('Error', ['title' => $errorTitle]);
+        }
+
+        $groupUser->status = GroupUserStatus::APPROVED->value;
+        $groupUser->token_used = Carbon::now();
+        $groupUser->save();
+
+        $adminUser = $groupUser->adminUser;
+
+        $adminUser->notify(new InvitationApproved($groupUser->group, $groupUser->user));
+
+        return redirect(route('group.profile', $groupUser->group))->with('success', 'You accepted to join to group "'.$groupUser->group->name.'"');
+    }
+
 
     /**
      * Display the specified resource.

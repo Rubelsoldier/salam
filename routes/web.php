@@ -17,6 +17,9 @@ use App\Http\Controllers\GroupController;
 
     Route::get('/g/{group:slug}', [GroupController::class, 'profile'])
         ->name('group.profile');
+
+    Route::get('/group/approve-invitation/{token}', [GroupController::class, 'approveInvitation'])
+        ->name('group.approveInvitation');
         
     Route::middleware('auth')->group(function () {
 
@@ -24,7 +27,10 @@ use App\Http\Controllers\GroupController;
         ->name('profile.updateImages');
         
     Route::post('/group/update-images/{group:slug}', [GroupController::class, 'updateImage'])
-        ->name('group.updateImages');    
+        ->name('group.updateImages');
+    
+    Route::post('/group/invite/{group:slug}', [GroupController::class, 'inviteUsers'])
+        ->name('group.inviteUsers');
 
     Route::post('/group/invite/{group:slug}', [GroupController::class, 'inviteUsers'])
         ->name('group.inviteUsers');
