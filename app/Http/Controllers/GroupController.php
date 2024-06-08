@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 use App\Http\Enums\GroupUserRole;
+use App\Notifications\RoleChanged;
 use App\Http\Enums\GroupUserStatus;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
@@ -265,7 +266,7 @@ class GroupController extends Controller
             $groupUser->role = $data['role'];
             $groupUser->save();
 
-            // $groupUser->user->notify(new RoleChanged($group, $data['role']));
+            $groupUser->user->notify(new RoleChanged($group, $data['role']));
 
             return back();
         }
