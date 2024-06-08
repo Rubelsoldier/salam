@@ -31,3 +31,5 @@ php artisan make:controller GroupController --model=Group --api --requests --res
 php artisan make:resource GroupResource
 
 php artisan make:notification InvitationInGroup
+
+php artisan make:resource GroupUserResource

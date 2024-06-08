@@ -132,6 +132,9 @@
                                         v-for="user of users" 
                                         :user="user" 
                                         :key="user.id"
+                                        :show-role-dropdown="isCurrentUserAdmin"
+                                        @role-change="onRoleChange"
+                                        :disable-role-dropdown="group.user_id === user.id"
                                         class="shadow rounded-lg"
                                 />
                             </div>
@@ -243,6 +246,7 @@ function resetThurmbnailImage() {
 
 function submitCoverImage() {
     imagesForm.post(route('group.updateImages', props.group.slug), {
+        preserveScroll: true,
         onSuccess: () => {
             showNotification.value = true;
             resetCoverImage()
@@ -255,6 +259,7 @@ function submitCoverImage() {
 
 function submitThurmbnailImage() {
     imagesForm.post(route('group.updateImages', props.group.slug), {
+        preserveScroll: true,
         onSuccess: () => {
             showNotification.value = true;
             resetThurmbnailImage()
@@ -286,6 +291,16 @@ function rejectUser(user) {
         action: 'reject'
     })
     form.post(route('group.approveRequest', props.group.slug))
+}
+
+function onRoleChange(user, role) {
+    const form = useForm({
+        user_id: user.id,
+        role
+    })
+    form.post(route('group.changeRole', props.group.slug), {
+        preserveScroll: true
+    })
 }
 
 </script>
