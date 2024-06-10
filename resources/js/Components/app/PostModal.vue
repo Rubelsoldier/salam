@@ -24,6 +24,9 @@
                                 </DialogTitle>
                                 <div class="p-4">
                                     <PostUserHeader :post="post" :show-time="false" class="mb-4" />
+                                    <div v-if="formErrors.group_id" class="bg-red-400 py-2 px-3 rounded text-white mb-3">
+                                        {{formErrors.group_id}}
+                                    </div>
                                     <ckeditor :editor="editor" v-model="form.body" :config="editorConfig"></ckeditor>  
                                     
                                     <div v-if="showExtensionsText"
@@ -39,7 +42,9 @@
                                     <div class="grid gap-3 my-3" :class="[
                                         computedAttachments.length === 1 ? 'grid-cols-1' : 'grid-cols-2'
                                     ]">
-                                        <div v-for="(myFile,ind) of computedAttachments">
+                                        <div v-for="(myFile,ind) of computedAttachments"
+                                            :key="ind"
+                                        >
                                             <div
                                                 class="group aspect-square bg-blue-100 flex flex-col items-center justify-center text-gray-500 relative border-2"
 
@@ -140,12 +145,17 @@ const props = defineProps({
         type: Object,
         required: true
     },
+    group:{
+        type: Object,
+        default: null
+    },
     modelValue: Boolean
 })
 
 const attachmentFiles = ref([])
 const form = useForm({
     id: null,
+    group_id: null,
     body: '',
     attachments: [],
     deleted_file_ids: [],
@@ -220,12 +230,17 @@ function resetModal(){
 }
 
 function submit() {
+
+    if (props.group) {
+        form.group_id = props.group.id
+    }
+
     form.attachments = attachmentFiles.value.map(myFile => myFile.file)
     if (props.post.id) {
         form._method = 'PUT'
         form.post(route('post.update', props.post.id), {
             preserveScroll: true,
-            onSuccess: () => {
+            onSuccess: (res) => {
                 closeModal()
             },
             onError:(errors)=>{

@@ -16,6 +16,7 @@ use App\Http\Resources\CommentResource;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UpdatePostRequest;
 use App\Http\Requests\UpdateCommentRequest;
+use App\Http\Resources\PostResource;
 
 class PostController extends Controller
 {

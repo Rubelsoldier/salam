@@ -8,7 +8,7 @@ import {usePage, Link} from "@inertiajs/vue3";
 import {ref} from "vue";
 import axiosClient from "@/axiosClient.js";
 import {Disclosure, DisclosureButton, DisclosurePanel} from "@headlessui/vue";
-
+  
 const authUser = usePage().props.auth.user;
 const emit = defineEmits(['commentCreate', 'commentDelete']);
 

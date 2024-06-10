@@ -18,7 +18,7 @@
 <script setup>
 import PostItem from "@/Components/app/PostItem.vue";
 import PostModal from "@/Components/app/PostModal.vue";
-import {onMounted, ref} from "vue";
+import {onMounted, ref, watch} from "vue";
 import {usePage} from "@inertiajs/vue3";
 import AttachmentPreviewModal from "@/Components/app/AttachmentPreviewModal.vue";
 import axiosClient from "@/axiosClient.js";
@@ -33,8 +33,8 @@ const loadMoreIntersect = ref(null)
 const page = usePage();
 
 const allPosts = ref({
-    data: page.props.posts.data,
-    next: page.props.posts.links.next
+    data: [],
+    next: null
 })
 
 const props = defineProps({
@@ -70,10 +70,23 @@ function loadMore() {
 
     axiosClient.get(allPosts.value.next)
         .then(({data}) => {
+            console.log(allPosts.value.data);
+            console.log(allPosts.value.next);
+            console.log(data);
+
             allPosts.value.data = [...allPosts.value.data, ...data.data]
             allPosts.value.next = data.links.next
         })
 }
+
+watch(() => page.props.posts, () => {
+    if (page.props.posts) {
+        allPosts.value = {
+            data: page.props.posts.data,
+            next: page.props.posts.links.next
+        }
+    }
+}, {deep: true, immediate: true})
 
 onMounted(() => {
     const observer = new IntersectionObserver(

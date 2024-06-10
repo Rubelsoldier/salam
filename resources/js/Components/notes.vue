@@ -13,6 +13,8 @@ reading from file system. Without having proper access, no one can access this u
 > for above 1 G post, validation message is not working. Zura sugggested to increase max post size little 
 bit more.
 
+> when I open attachments of posts, when I click right or left arrow button, if I reach the last 
+attachment, then I will make the arrow more unclear so that, user can understand, its the last 
 ====== To fix =====
 My profile details updated commit, need to fix the notificaiton bar. It's not 
 disappearing. 
