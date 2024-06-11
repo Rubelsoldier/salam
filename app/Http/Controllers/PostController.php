@@ -8,15 +8,17 @@ use App\Models\Reaction;
 use Illuminate\Http\Request;
 use App\Models\PostAttachment;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\DB;
 use App\Http\Enums\ReactionEnum;
+use App\Notifications\PostDeleted;
+use Illuminate\Support\Facades\DB;
+use App\Http\Resources\PostResource;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\CommentDeleted;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Resources\CommentResource;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UpdatePostRequest;
 use App\Http\Requests\UpdateCommentRequest;
-use App\Http\Resources\PostResource;
 
 class PostController extends Controller
 {
@@ -116,17 +118,22 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        // TODO
+
         $id = Auth::id();
 
-        if ($post->user_id !== $id) {
-            return response("You don't have permission to delete this post", 403);
+        if ($post->isOwner($id) || $post->group && $post->group->isAdmin($id)) {
+            $post->delete();
+
+            if (!$post->isOwner($id)) {
+                $post->user->notify(new PostDeleted($post->group));
+            }
+
+            return back();
         }
 
-        $post->delete();
-
-        return back();
+        return response("You don't have permission to delete this post", 403);    
     }
+
     public function downloadAttachment(PostAttachment $attachment)
     {
         // TODO check if user has permission to download that attachment
@@ -188,12 +195,20 @@ class PostController extends Controller
 
     public function deleteComment(Comment $comment)
     {
-        if ($comment->user_id !== Auth::id()) {
-            return response("You don't have permission to delete this comment.", 403);
+        $post = $comment->post;
+        $id = Auth::id();
+
+        if($comment->isOwner(($id) || $post->isOwner($id))){
+            $comment->delete();
+
+            if (!$comment->isOwner($id)) {
+                $comment->user->notify(new CommentDeleted($comment, $post));
+            }
+
+            return response('', 204);
         }
 
-        $comment->delete();
-        return response('', 204);
+            return response("You don't have permission to delete this comment.", 403);        
     }
 
     public function updateComment(UpdateCommentRequest $request, Comment $comment)

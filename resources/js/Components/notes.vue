@@ -15,6 +15,12 @@ bit more.
 
 > when I open attachments of posts, when I click right or left arrow button, if I reach the last 
 attachment, then I will make the arrow more unclear so that, user can understand, its the last 
+
+> Making dedicated page for a post on comment delete notification to show 
+
+
+
+
 ====== To fix =====
 My profile details updated commit, need to fix the notificaiton bar. It's not 
 disappearing. 
@@ -24,6 +30,8 @@ deleting comment and its sub comments doesn't decrease total comment number
 deleting post is not working 
 
 In a group, invite user button modal, cancel button is not working. 
+
+
 
 ================ Commands used in this project =============
 php artisan make:migration add_parent_id_to_comments
