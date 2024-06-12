@@ -17,7 +17,7 @@ class HomeController extends Controller
     {
         $userId = Auth::id();
         $posts = Post::postsForTimeline($userId)            
-                    ->paginate(3);
+                    ->paginate(10);
 
         $posts = PostResource::collection($posts);
         

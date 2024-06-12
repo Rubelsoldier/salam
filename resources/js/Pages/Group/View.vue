@@ -336,7 +336,6 @@ function updateGroup(){
 }
 
 function deleteUser(user) {
-    console.log("111")
     if (!window.confirm(`Are you sure you want to remove user "${user.name}" from this group?`)) {
         return false;
     }
