@@ -18,7 +18,8 @@ attachment, then I will make the arrow more unclear so that, user can understand
 
 > Making dedicated page for a post on comment delete notification to show 
 
-
+> When user is sending group joining request, is immediately showing in users tab, also in request tab 
+It should be only showing in request tab not in users tab until approve. 
 
 
 ====== To fix =====

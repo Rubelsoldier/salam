@@ -26,6 +26,10 @@
                         <option :selected="user.role === 'admin'">admin</option>
                         <option :selected="user.role === 'user'">user</option>
                     </select>
+                    <button @click="$emit('delete', user)"
+                            class="text-xs py-1.5 px-2 rounded bg-gray-700 hover:bg-gray-800 text-white ml-3 disabled:bg-gray-500"
+                            :disabled="disableRoleDropdown">delete
+                    </button>
                 </div>
             </div>
         </div>
@@ -51,7 +55,7 @@ defineProps({
     }
 })
 
-defineEmits(['approve','reject','roleChange'])
+defineEmits(['approve','reject','roleChange','delete'])
 </script>
 
 <style scoped>

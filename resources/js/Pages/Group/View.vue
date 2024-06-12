@@ -145,6 +145,7 @@
                                         @role-change="onRoleChange"
                                         :disable-role-dropdown="group.user_id === user.id"
                                         class="shadow rounded-lg"
+                                        @delete="deleteUser"
                                 />
                             </div>
                         </TabPanel>
@@ -330,6 +331,20 @@ function onRoleChange(user, role) {
 
 function updateGroup(){
     aboutForm.put(route('group.update', props.group.slug), {
+        preserveScroll: true
+    })
+}
+
+function deleteUser(user) {
+    console.log("111")
+    if (!window.confirm(`Are you sure you want to remove user "${user.name}" from this group?`)) {
+        return false;
+    }
+
+    const form = useForm({
+        user_id: user.id,
+    })
+    form.delete(route('group.removeUser', props.group.slug), {
         preserveScroll: true
     })
 }

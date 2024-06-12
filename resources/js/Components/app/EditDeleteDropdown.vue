@@ -97,7 +97,6 @@
     defineEmits(['edit', 'delete'])
 
     // Uses 
-    const authUser = usePage().props.auth.user;
-    console.log(props.post?.group);
+    const authUser = usePage().props.auth.user;    
 
 </script>

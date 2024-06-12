@@ -13,6 +13,7 @@ use Illuminate\Validation\Rule;
 use App\Http\Enums\GroupUserRole;
 use App\Notifications\RoleChanged;
 use App\Http\Enums\GroupUserStatus;
+use App\Http\Resources\PostResource;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\GroupResource;
@@ -23,9 +24,9 @@ use App\Notifications\InvitationInGroup;
 use App\Http\Requests\InviteUsersRequest;
 use App\Http\Requests\UpdateGroupRequest;
 use App\Http\Resources\GroupUserResource;
-use App\Http\Resources\PostResource;
 use App\Notifications\InvitationApproved;
 use App\Notifications\RequestToJoinGroup;
+use App\Notifications\UserRemovedFromGroup;
 use Illuminate\Support\Facades\Notification;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
@@ -266,6 +267,35 @@ class GroupController extends Controller
 
     }
 
+    public function removeUser(Request $request, Group $group)
+    {
+        if (!$group->isAdmin(Auth::id())) {
+            return response("You don't have permission to perform this action", 403);
+        }
+
+        $data = $request->validate([
+            'user_id' => ['required'],
+        ]);
+
+        $user_id = $data['user_id'];
+        if ($group->isOwner($user_id)) {
+            return response("The owner of the group cannot be removed", 403);
+        }
+
+        $groupUser = GroupUser::where('user_id', $user_id)
+            ->where('group_id', $group->id)
+            ->first();
+
+        if ($groupUser) {
+            $user = $groupUser->user;
+            $groupUser->delete();
+
+            $user->notify(new UserRemovedFromGroup($group));
+        }
+
+        return back();
+    }
+    
     public function changeRole(Request $request, Group $group)
     {
         if (!$group->isAdmin(Auth::id())) {
@@ -292,8 +322,8 @@ class GroupController extends Controller
 
             $groupUser->user->notify(new RoleChanged($group, $data['role']));
 
-            return back();
         }
+        return back();
     }
 
 
