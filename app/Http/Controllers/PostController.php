@@ -29,6 +29,22 @@ use App\Notifications\ReactionAddedOnComment;
 class PostController extends Controller
 {
 
+    public function view(Post $post) {
+
+        $post->loadCount('reactions');
+        $post->load([
+            'comments' => function ($query) {
+                $query->withCount('reactions'); // SELECT * FROM comments WHERE post_id IN (1, 2, 3...)
+                // SELECT COUNT(*) from reactions
+            },
+        ]);
+        
+        return inertia('Post/View', [
+            'post' => new PostResource($post),
+            'test'=> 'hello Rana, how are you?'
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -210,7 +226,7 @@ class PostController extends Controller
         ]);
 
         $post = $comment->post;
-        $post->user->notify(new CommentCreated($comment));
+        $post->user->notify(new CommentCreated($comment,$post));
 
         return response(new CommentResource($comment), 201);
     }

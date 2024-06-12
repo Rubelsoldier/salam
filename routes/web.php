@@ -56,7 +56,10 @@ use App\Http\Controllers\GroupController;
     
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-//     Posts 
+    //     Posts 
+    Route::get('/post/{post}', [PostController::class, 'view'])
+        ->name('post.view');
+            
     Route::post('/post', [PostController::class, 'store'])
             ->name('post.create');
     
@@ -71,7 +74,7 @@ use App\Http\Controllers\GroupController;
     Route::post('/post/{post}/comment', [PostController::class, 'createComment'])
             ->name('post.comment.create');
 
-//  Comments 
+    //  Comments 
     Route::delete('/comment/{comment}', [PostController::class, 'deleteComment'])
         ->name('comment.delete');
 
