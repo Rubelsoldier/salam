@@ -1,10 +1,9 @@
 <template>
     <AuthenticatedLayout>
         <div class="w-[768px] mx-auto h-full overflow-auto">
-            <div 
-                v-show="showNotification && success"
+            <div v-show="showNotification && success"
                 class="my-2 py-2 px-3 font-medium text-sm bg-emerald-500 text-white">
-                 {{ localSuccess }}                                
+                {{ localSuccess }}
             </div>
             <div v-if="errors.cover" class="my-2 py-2 px-3 font-medium text-sm bg-red-400 text-white">
                 {{ errors . cover }}
@@ -49,32 +48,48 @@
 
                 <!-- Profile picture  -->
                 <div class="flex">
-                    <div class="flex items-center justify-center relative group/avatar -mt-[64px] ml-[48px] w-[128px] h-[128px] rounded-full">
+                    <div
+                        class="flex items-center justify-center relative group/avatar -mt-[64px] ml-[48px] w-[128px] h-[128px] rounded-full">
                         <img :src="avatarImageSrc || user.avatar_url || '/img/default_avatar.jpg'"
-                             class="w-full h-full object-cover rounded-full">
-                        <button
-                            v-if="!avatarImageSrc"
+                            class="w-full h-full object-cover rounded-full">
+                        <button v-if="!avatarImageSrc"
                             class="absolute left-0 top-0 right-0 bottom-0 bg-black/50 text-gray-200 rounded-full opacity-0 flex items-center justify-center group-hover/avatar:opacity-100">
-                            <CameraIcon class="w-8 h-8"/>
+                            <CameraIcon class="w-8 h-8" />
 
                             <input type="file" class="absolute left-0 top-0 bottom-0 right-0 opacity-0"
-                                   @change="onAvatarChange"/>
+                                @change="onAvatarChange" />
                         </button>
                         <div v-else class="absolute top-1 right-2 top-4 flex flex-col gap-2">
-                            <button
-                                @click="resetAvatarImage"
+                            <button @click="resetAvatarImage"
                                 class="w-4 h-4 flex items-center justify-center bg-red-500/80 text-white rounded-full">
-                                <XMarkIcon class="h-4 w-4"/>
+                                <XMarkIcon class="h-4 w-4" />
                             </button>
-                            <button
-                                @click="submitAvatarImage"
+                            <button @click="submitAvatarImage"
                                 class="w-4 h-4 flex items-center justify-center bg-emerald-500/80 text-white rounded-full">
-                                <CheckCircleIcon class="h-4 w-4"/>
+                                <CheckCircleIcon class="h-4 w-4" />
                             </button>
                         </div>
                     </div>
+                    <!-- new part  -->
+                    <div class="flex justify-between items-center flex-1 p-4">
+                        <div>
+                            <h2 class="font-bold text-lg">{{ user.name }}</h2>
+                            <p class="text-xs text-gray-500">{{ followerCount }} followers</p>
+                        </div>
+
+                        <div>
+                            <PrimaryButton v-if="!isCurrentUserFollower" @click="followUser">
+                                Follow User
+                            </PrimaryButton>
+                            <DangerButton v-else @click="followUser">
+                                Unfollow User
+                            </DangerButton>
+                        </div>
+                    </div>
+                    <!-- new part  -->
                 </div>
             </div>
+
             <div class="border-t">
                 <TabGroup>
                     <TabList class="flex bg-white">
@@ -145,7 +160,8 @@
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
     import TabItem from "@/Pages/Profile/Partials/TabItem.vue";
     import Edit from "@/Pages/Profile/Edit.vue";
-    
+    import PrimaryButton from "@/Components/PrimaryButton.vue";
+    import DangerButton from "@/Components/DangerButton.vue";
 
     // Uses 
     const imagesForm = useForm({
@@ -169,6 +185,8 @@
         status: {
             type: String,
         },
+        isCurrentUserFollower : Boolean,
+        followerCount: Number,
         success: {
             type: String,
         },
@@ -242,6 +260,16 @@
                 resetAvatarImage()
                 hideNotification();
             }
+        })
+    }
+
+    function followUser() {
+        const form = useForm({
+            follow: !props.isCurrentUserFollower
+        })
+
+        form.post(route('user.follow', props.user.id), {
+            preserveScroll: true
         })
     }
 
