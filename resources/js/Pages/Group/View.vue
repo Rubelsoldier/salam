@@ -174,11 +174,17 @@
                         <TabPanel class="bg-white p-3 shadow">
                             Photos
                         </TabPanel>
-                        <TabPanel v-if="isCurrentUserAdmin" class="bg-white p-3 shadow">
-                            <GroupForm :form = "aboutForm" />
-                            <PrimaryButton @click="updateGroup">
-                                Submit
-                            </PrimaryButton> 
+                        <TabPanel class="bg-white p-3 shadow">                            
+                            <!-- <pre>{{ group }}</pre> -->
+                            <template v-if="isCurrentUserAdmin">
+                                <GroupForm :form = "aboutForm" />
+                                <PrimaryButton @click="updateGroup">
+                                    Submit
+                                </PrimaryButton> 
+                            </template>
+                            <div v-else v-html="group.about">
+                                
+                            </div>
                         </TabPanel>
                     </TabPanels>
                 </TabGroup>
