@@ -44,7 +44,7 @@ class GroupController extends Controller
         if ($group->hasApprovedUser($userId)) {
             $posts = Post::postsForTimeline($userId)
                 ->where('group_id', $group->id)
-                ->paginate(10);
+                ->paginate(2);
             $posts = PostResource::collection($posts);
         } else {
             return Inertia::render('Group/View', [
@@ -57,7 +57,8 @@ class GroupController extends Controller
         }
 
         if ($request->wantsJson()) {
-            return PostResource::collection($posts);
+            // return PostResource::collection($posts);
+            return $posts;
         }
 
         $users = User::query()

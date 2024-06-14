@@ -32,7 +32,7 @@ deleting post is not working
 
 In a group, invite user button modal, cancel button is not working. 
 
-
+profile link , sometimes not working !
 
 ================ Commands used in this project =============
 php artisan make:migration add_parent_id_to_comments
@@ -44,3 +44,10 @@ php artisan make:resource GroupResource
 php artisan make:notification InvitationInGroup
 
 php artisan make:resource GroupUserResource
+
+
+==================== Further investigation ==============
+Lec: 34. Load more functionality. 1:04:00
+Data object chilo or Arrray, it doesn't 
+
+

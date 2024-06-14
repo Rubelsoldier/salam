@@ -2,7 +2,7 @@
     <div class="bg-white transition-all border-2 border-transparent hover:border-indigo-200">
         <div class="flex items-center gap-2 py-2 px-2">
             <Link :href="route('profile', user.username)">
-                <img :src="user.avatar_url || '/img/default_avatar.jpg'" class="w-[32px] rounded-full"/>
+                <img :src="user.avatar_url || '/img/default_avatar.jpg'" class="w-[32px] rounded-full avatar-image"/>
             </Link>
             <div class="flex justify-between flex-1">
                 <Link :href="route('profile', user.username)" >
@@ -59,5 +59,8 @@ defineEmits(['approve','reject','roleChange','delete'])
 </script>
 
 <style scoped>
-
+    .avatar-image {
+        width: 32px;
+        height: 32px;
+    }
 </style>
