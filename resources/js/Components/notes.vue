@@ -1,4 +1,5 @@
-========= Implement if you have time ======
+=================== Implement if you have time ==============
+
 while uploading cover,profile image, cropping part implementation
 
 to implement video preview in attach files in postmodal
@@ -21,8 +22,12 @@ attachment, then I will make the arrow more unclear so that, user can understand
 > When user is sending group joining request, is immediately showing in users tab, also in request tab 
 It should be only showing in request tab not in users tab until approve. 
 
+> lec 35, learning the queries deeply , clearly
 
-====== To fix =====
+> follow back when the followers already following me. 
+
+====================== To fix ===================
+
 My profile details updated commit, need to fix the notificaiton bar. It's not 
 disappearing. 
 
@@ -35,6 +40,7 @@ In a group, invite user button modal, cancel button is not working.
 profile link , sometimes not working !
 
 ================ Commands used in this project =============
+
 php artisan make:migration add_parent_id_to_comments
 
 php artisan make:controller GroupController --model=Group --api --requests --resource
