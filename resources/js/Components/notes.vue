@@ -19,9 +19,6 @@ attachment, then I will make the arrow more unclear so that, user can understand
 
 > Making dedicated page for a post on comment delete notification to show 
 
-> When user is sending group joining request, is immediately showing in users tab, also in request tab 
-It should be only showing in request tab not in users tab until approve. 
-
 > lec 35, learning the queries deeply , clearly
 
 > follow back when the followers already following me. 
@@ -37,7 +34,10 @@ deleting post is not working
 
 In a group, invite user button modal, cancel button is not working. 
 
-profile link , sometimes not working !
+logout/profile link , sometimes not working !
+
+When user is sending group joining request, is immediately showing in users tab, also in 
+request tab. It should be only showing in request tab not in users tab until approve. 
 
 ================ Commands used in this project =============
 

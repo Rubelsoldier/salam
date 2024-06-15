@@ -150,7 +150,7 @@
                             </div>
                         </TabPanel>
                         <TabPanel>
-                            Photos
+                            <TabPhotos :photos="photos"/>
                         </TabPanel>
                         <TabPanel v-if="isMyProfile">
                             <Edit :must-verify-email="mustVerifyEmail" :status="status" />
@@ -191,10 +191,11 @@
     import Edit from "@/Pages/Profile/Edit.vue";
     import PrimaryButton from "@/Components/PrimaryButton.vue";
     import DangerButton from "@/Components/DangerButton.vue";
-import PostList from '@/Components/app/PostList.vue';
-import CreatePost from '@/Components/app/CreatePost.vue';
-import TextInput from '@/Components/TextInput.vue';
-import UserListItem from '@/Components/app/UserListItem.vue';
+    import PostList from '@/Components/app/PostList.vue';
+    import CreatePost from '@/Components/app/CreatePost.vue';
+    import TextInput from '@/Components/TextInput.vue';
+    import UserListItem from '@/Components/app/UserListItem.vue';
+    import TabPhotos from './TabPhotos.vue';
 
     // Uses 
     const imagesForm = useForm({
@@ -231,6 +232,7 @@ import UserListItem from '@/Components/app/UserListItem.vue';
         posts: Object,
         followers: Array,
         followings: Array,
+        photos: Array
     });
 
     // Methods 

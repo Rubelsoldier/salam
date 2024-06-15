@@ -8,13 +8,15 @@ use Inertia\Inertia;
 use Inertia\Response;
 use App\Models\Follower;
 use Illuminate\Http\Request;
+use App\Models\PostAttachment;
+use App\Http\Resources\PostResource;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProfileUpdateRequest;
-use App\Http\Resources\PostResource;
+use App\Http\Resources\PostAttachmentResource;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class ProfileController extends Controller
@@ -42,6 +44,12 @@ class ProfileController extends Controller
 
         $followings = $user->followings;
 
+        $photos = PostAttachment::query()
+                ->where('mime', 'like', 'image/%')
+                ->where('created_by', $user->id)
+                ->latest()
+                ->get();
+
         return Inertia::render('Profile/View', [
             'mustVerifyEmail' => $user instanceof MustVerifyEmail,
             'status' => session('status'),
@@ -51,7 +59,8 @@ class ProfileController extends Controller
             'user' => new UserResource($user),
             'posts' => $posts,
             'followers' => UserResource::collection($followers),
-            'followings' => UserResource::collection($followings)
+            'followings' => UserResource::collection($followings),
+            'photos' => PostAttachmentResource::collection($photos)
         ]);
     }
 

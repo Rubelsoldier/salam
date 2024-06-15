@@ -175,7 +175,7 @@
                             </div>
                         </TabPanel>
                         <TabPanel class="bg-white p-3 shadow">
-                            Photos
+                            <TabPhotos :photos="photos" />
                         </TabPanel>
                         <TabPanel class="bg-white p-3 shadow">                            
                             <!-- <pre>{{ group }}</pre> -->
@@ -212,6 +212,7 @@ import GroupForm from '@/Components/app/GroupForm.vue'
 import TextInput from "@/Components/TextInput.vue";
 import PostList from '@/Components/app/PostList.vue';
 import CreatePost from '@/Components/app/CreatePost.vue';
+import TabPhotos from '../Profile/TabPhotos.vue';
 
 const imagesForm = useForm({
     thumbnail: null,
@@ -239,6 +240,7 @@ const props = defineProps({
     posts: Object,
     users: Array,
     requests: Array,
+    photos: Array
 });
 
 const aboutForm = useForm({

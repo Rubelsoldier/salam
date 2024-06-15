@@ -8,6 +8,7 @@ use App\Models\Group;
 use App\Models\GroupUser;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\PostAttachment;
 use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 use App\Http\Enums\GroupUserRole;
@@ -28,6 +29,7 @@ use App\Notifications\InvitationApproved;
 use App\Notifications\RequestToJoinGroup;
 use App\Notifications\UserRemovedFromGroup;
 use Illuminate\Support\Facades\Notification;
+use App\Http\Resources\PostAttachmentResource;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class GroupController extends Controller
@@ -70,12 +72,21 @@ class GroupController extends Controller
         
         $requests = $group->pendingUsers()->orderBy('name')->get();
 
+        $photos = PostAttachment::query()
+                ->select('post_attachments.*')
+                ->join('posts AS p', 'p.id', 'post_attachments.post_id')
+                ->where('p.group_id', $group->id)
+                ->where('mime', 'like', 'image/%')
+                ->latest()
+                ->get();
+
         return Inertia::render('Group/View', [
             'success' => session('success'),
             'group' => new GroupResource($group),
             'posts' => $posts,
             'users' => GroupUserResource::collection($users),
             'requests' => UserResource::collection($requests),
+            'photos' => PostAttachmentResource::collection($photos)
         ]);
     }
 
