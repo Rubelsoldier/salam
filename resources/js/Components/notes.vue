@@ -39,6 +39,9 @@ logout/profile link , sometimes not working !
 When user is sending group joining request, is immediately showing in users tab, also in 
 request tab. It should be only showing in request tab not in users tab until approve. 
 
+If I uploade an non supporting file type, then it shows red mark border, but after deleting 
+the specific file, the red border shows to another supported attachment.
+
 ================ Commands used in this project =============
 
 php artisan make:migration add_parent_id_to_comments

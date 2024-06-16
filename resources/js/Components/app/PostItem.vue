@@ -11,12 +11,10 @@
         <div class="grid gap-3 mb-3" :class="[
             post.attachments.length === 1 ? 'grid-cols-1' : 'grid-cols-2'
         ]">
-            <template v-for="(attachment, ind) of post.attachments.slice(0, 4)"
-                      :key="ind"
-            >
+            <template v-for="(attachment, ind) of post.attachments.slice(0, 4)" :key="ind">
 
                 <div @click="openAttachment(ind)"
-                     class="group aspect-square bg-blue-100 flex flex-col items-center justify-center text-gray-500 relative cursor-pointer">
+                    class="group aspect-square bg-blue-100 flex flex-col items-center justify-center text-gray-500 relative cursor-pointer">
 
                     <div v-if="ind === 3 && post.attachments.length > 4"
                         class="absolute left-0 top-0 right-0 bottom-0 z-10 bg-black/60 text-white flex items-center justify-center text-2xl">
@@ -31,6 +29,18 @@
                     <!--/ Download-->
 
                     <img v-if="isImage(attachment)" :src="attachment.url" class="object-contain aspect-square" />
+                    <div v-else-if="isVideo(attachment)" class="relative flex justify-center items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="z-20 absolute w-16 h-16 text-gray-800 text-white opacity-70">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" />
+                        </svg>
+
+                        <div class="absolute left-0 top-0 w-full h-full bg-black/50 z-10"></div>
+                        <video :src="attachment.url"></video>
+                    </div>
                     <div v-else class="flex flex-col justify-center items-center">
                         <PaperClipIcon class="w-10 h-10 mb-3" />
 
@@ -60,7 +70,7 @@
                 </DisclosureButton>
             </div>
             <DisclosurePanel class="comment-list mt-3 max-h-[400px] overflow-auto">
-                <CommentList :post="post" :data="{comments: post.comments}"/>
+                <CommentList :post="post" :data="{comments: post.comments}" />
             </DisclosurePanel>
         </Disclosure>
 
@@ -72,7 +82,7 @@ import {ChatBubbleLeftRightIcon, ChatBubbleLeftEllipsisIcon, HandThumbUpIcon, Ar
 import {Disclosure, DisclosureButton, DisclosurePanel} from '@headlessui/vue'
 import PostUserHeader from "@/Components/app/PostUserHeader.vue";
 import {router, usePage} from '@inertiajs/vue3'
-import {isImage} from '../../helper.js'
+import {isImage, isVideo} from '../../helper.js'
 import {PaperClipIcon} from "@heroicons/vue/24/solid/index.js";
 import axiosClient from "@/axiosClient.js";
 import EditDeleteDropdown from "@/Components/app/EditDeleteDropdown.vue";
