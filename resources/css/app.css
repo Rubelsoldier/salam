@@ -68,6 +68,11 @@
     margin: revert;
 }
 
+.ck-content-output a.hashtag {
+    background-color: #eaf4ff;
+    color: #4156e2;
+}
+
 .ck-content-output > ol,
 .ck-content-output > ul {
     list-style: revert;

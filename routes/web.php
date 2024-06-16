@@ -85,9 +85,7 @@ use App\Http\Controllers\ProfileController;
 
         Route::post('/{post}/comment', [PostController::class, 'createComment'])
             ->name('post.comment.create');
-
-        Route::get('/search/{search?}', [SearchController::class, 'search'])
-            ->name('search');
+        
     });
     
 
@@ -100,6 +98,9 @@ use App\Http\Controllers\ProfileController;
 
     Route::post('/comment/{comment}/reaction', [PostController::class, 'commentReaction'])
         ->name('comment.reaction');
+
+    Route::get('/search/{search?}', [SearchController::class, 'search'])
+        ->name('search');
             
 
 });

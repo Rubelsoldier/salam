@@ -163,7 +163,8 @@ const keywords = ref(usePage().props.searchh)
 const authUser = usePage().props.auth.user;
 
 function search() {
-    router.get(route('search', keywords.value))
+    router.get(route('search', encodeURIComponent(keywords.value)))
+    console.log(route('search'));
 }
 
 </script>
