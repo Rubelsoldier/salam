@@ -85,6 +85,9 @@ use App\Http\Controllers\ProfileController;
 
         Route::post('/{post}/comment', [PostController::class, 'createComment'])
             ->name('post.comment.create');
+            
+        Route::post('/fetch-url-preview', [PostController::class, 'fetchUrlPreview'])
+            ->name('post.fetchUrlPreview');
         
     });
     

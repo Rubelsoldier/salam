@@ -54,6 +54,9 @@ php artisan make:notification InvitationInGroup
 
 php artisan make:resource GroupUserResource
 
+php artisan make:migration add_preview_column_to_posts_table
+
+
 
 ==================== Further investigation ==============
 Lec: 34. Load more functionality. 1:04:00

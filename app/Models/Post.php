@@ -14,7 +14,12 @@ class Post extends Model
 {
     use HasFactory,SoftDeletes;
 
-    protected $fillable = ['user_id', 'body','group_id'];
+    protected $fillable = ['user_id', 'body','group_id', 'preview', 'preview_url'];
+    
+     // With casting
+     protected $casts = [
+        'preview' => 'json',
+    ];
 
     public function user(): BelongsTo
     {
