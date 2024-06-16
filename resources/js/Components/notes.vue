@@ -56,7 +56,9 @@ php artisan make:resource GroupUserResource
 
 php artisan make:migration add_preview_column_to_posts_table
 
+php artisan make:migration add_pinned_column_to_posts_table
 
+php artisan make:migration add_pinned_post_id_column_to_groups_and_users_tables
 
 ==================== Further investigation ==============
 Lec: 34. Load more functionality. 1:04:00

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\GroupResource;
-use App\Http\Resources\PostResource;
-use App\Http\Resources\UserResource;
-use App\Models\Group;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Group;
 use Illuminate\Http\Request;
+use App\Http\Resources\PostResource;
+use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\GroupResource;
 
 class SearchController extends Controller
 {
@@ -29,9 +30,8 @@ class SearchController extends Controller
             ->latest()
             ->get();
 
-        $posts = Post::query()
+        $posts = Post::postsForTimeline(Auth::id())
             ->where('body', 'like', "%$search%")
-            ->latest()
             ->paginate(5);
 
         $posts = PostResource::collection($posts);

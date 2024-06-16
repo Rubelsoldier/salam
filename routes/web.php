@@ -88,6 +88,9 @@ use App\Http\Controllers\ProfileController;
             
         Route::post('/fetch-url-preview', [PostController::class, 'fetchUrlPreview'])
             ->name('post.fetchUrlPreview');
+
+        Route::post('/{post}/pin', [PostController::class, 'pinUnpin'])
+            ->name('post.pinUnpin');
         
     });
     
