@@ -29,13 +29,13 @@
 
                     <div class="hidden sm:flex sm:items-center">
                         <!-- Settings Dropdown -->
-                        <div class="ms-3 relative">
+                        <div class="ms-3 relative ">
                             <Dropdown v-if="authUser" align="right" width="48">
                                 <template #trigger>
                                         <span class="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white   hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150"
+                                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150 "
                                             >
                                                 {{ authUser.name }}
 
@@ -139,7 +139,7 @@
         </nav>
 
         <!-- Page Heading -->
-        <header class="bg-white   shadow" v-if="$slots.header">
+        <header class="bg-white dark:bg-gray-800 shadow" v-if="$slots.header">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <slot name="header"/>
             </div>

@@ -102,7 +102,7 @@
                     </div>
                 </div>
             </div>
-            <div class="border-t m-4 pt-0">
+            <div class="border-t m-4 mt-0">
                 <TabGroup>
                     <TabList class="flex bg-white dark:bg-slate-950 dark:text-white">
                         <Tab v-slot="{ selected }" as="template">
@@ -174,14 +174,13 @@
                                 There are no pending requests
                             </div>
                         </TabPanel>
-                        <TabPanel class="bg-white p-3 shadow">
+                        <TabPanel>
                             <TabPhotos :photos="photos" />
                         </TabPanel>
-                        <TabPanel class="bg-white p-3 shadow">                            
-                            <!-- <pre>{{ group }}</pre> -->
+                        <TabPanel>
                             <template v-if="isCurrentUserAdmin">
                                 <GroupForm :form = "aboutForm" />
-                                <PrimaryButton @click="updateGroup">
+                                <PrimaryButton @click="updateGroup" class="dark: bg-slate-700 hover:bg-slate-500">
                                     Submit
                                 </PrimaryButton> 
                             </template>
