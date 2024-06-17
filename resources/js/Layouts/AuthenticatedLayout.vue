@@ -65,7 +65,9 @@
                                 </template>
                             </Dropdown>
                             <div v-else>
-                                <Link :href="route('login')">
+                                <Link :href="route('login')" 
+                                      class="dark:text-gray-100"
+                                >
                                     Login
                                 </Link>
                             </div>
