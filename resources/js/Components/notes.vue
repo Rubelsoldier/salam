@@ -25,14 +25,14 @@ attachment, then I will make the arrow more unclear so that, user can understand
 
 ====================== To fix ===================
 
+Group about tab making darker 
+
 My profile details updated commit, need to fix the notificaiton bar. It's not 
 disappearing. 
 
 deleting comment and its sub comments doesn't decrease total comment number 
 
 deleting post is not working 
-
-In a group, invite user button modal, cancel button is not working. 
 
 logout/profile link , sometimes not working !
 

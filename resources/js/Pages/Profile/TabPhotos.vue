@@ -1,5 +1,5 @@
 <template>
-    <div class="grid gap-2 grid-cols-2 sm:grid-cols-3">
+    <div class="grid gap-2 grid-cols-2 sm:grid-cols-3 ">
         <template v-for="(attachment, ind) of photos" :key="ind">
             <div @click="openPhoto(ind)"
                  class="group aspect-square bg-blue-100 flex flex-col items-center justify-center text-gray-500 relative cursor-pointer">
@@ -22,7 +22,7 @@
             </div>
         </template>
     </div>
-    <div v-if="!photos.length" class="py-8 text-center text-gray-600">
+    <div v-if="!photos.length" class="py-8 text-center text-gray-600 dark:bg-slate-900">
         There are no photos
     </div>
     <AttachmentPreviewModal :attachments="photos || []"
