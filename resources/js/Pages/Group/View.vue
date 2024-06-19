@@ -123,7 +123,7 @@
                     </TabList>
 
                     <TabPanels class="mt-2">
-                        <TabPanel class="bg-white p-3 shadow">
+                        <TabPanel class="bg-white dark:bg-slate-800 dark:text-gray-100 p-3 shadow">
                             <template v-if="posts">
                                 <CreatePost :group="group"/>
                                 <PostList v-if="posts.data.length" :posts="posts.data" class="flex-1" />
@@ -131,7 +131,7 @@
                                     There are no posts in this group. Be the first and create it.
                                 </div>
                             </template>
-                            <div v-else class="py-8 text-center dark:text-gray-100">
+                            <div v-else class="py-8 text-center">
                                 You don't have permission to view these posts.
                             </div>  
                         </TabPanel>
