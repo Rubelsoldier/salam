@@ -29,7 +29,14 @@ use App\Notifications\ReactionAddedOnComment;
 class PostController extends Controller
 {
 
-    public function view(Post $post) {
+    public function view(Request $request, Post $post) {
+
+        if ($post->group_id && !$post->group->hasApprovedUser(Auth::id())) {
+            return inertia('Error', [
+                'title' => 'Permission Denied',
+                'body' => "You don't have permission to view that post"
+            ])->toResponse($request)->setStatusCode(403);
+        }
 
         $post->loadCount('reactions');
         $post->load([
@@ -40,8 +47,7 @@ class PostController extends Controller
         ]);
         
         return inertia('Post/View', [
-            'post' => new PostResource($post),
-            'test'=> 'hello Rana, how are you?'
+            'post' => new PostResource($post)
         ]);
     }
 

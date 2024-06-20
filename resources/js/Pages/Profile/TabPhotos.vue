@@ -22,8 +22,11 @@
             </div>
         </template>
     </div>
-    <div v-if="!photos.length" class="py-8 text-center text-gray-600 dark:bg-slate-900">
-        There are no photos
+    <div v-if="!photos" class="py-8 text-center text-gray-600 dark:text-gray-400">
+        You don't have permission to view these photos.
+    </div>
+    <div v-else-if="!photos.length" class="py-8 text-center text-gray-600 dark:text-gray-400">
+        There are no photos.
     </div>
     <AttachmentPreviewModal :attachments="photos || []"
                             v-model:index="currentPhotoIndex"

@@ -131,7 +131,7 @@
                                     There are no posts in this group. Be the first and create it.
                                 </div>
                             </template>
-                            <div v-else class="py-8 text-center">
+                            <div v-else class="py-8 text-center dark:text-gray-400">
                                 You don't have permission to view these posts.
                             </div>  
                         </TabPanel>
@@ -169,7 +169,7 @@
                                 />
                             </div>
                             <div v-else
-                                 class="py-8 text-center dark:text-gray-100"
+                                 class="py-8 text-center dark:text-gray-400"
                             >
                                 There are no pending requests
                             </div>
@@ -184,7 +184,7 @@
                                     Submit
                                 </PrimaryButton> 
                             </template>
-                            <div v-else class="ck-content-output dark:text-gray-100" v-html="group.about">
+                            <div v-else class="ck-content-output dark:text-gray-400" v-html="group.about">
                                 
                             </div>
                         </TabPanel>

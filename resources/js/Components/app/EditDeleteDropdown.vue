@@ -11,7 +11,6 @@
             />
         </MenuButton>
     </div>
-
     <transition
         enter-active-class="transition duration-100 ease-out"
         enter-from-class="transform scale-95 opacity-0"
@@ -20,7 +19,7 @@
         leave-from-class="transform scale-100 opacity-100"
         leave-to-class="transform scale-95 opacity-0"
     >
-        <MenuItems
+        <MenuItems v-if="authUser"
             class="absolute z-10 right-0 mt-2 w-48 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none"
         >
             <div class="px-1 py-1">
