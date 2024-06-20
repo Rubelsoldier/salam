@@ -23,6 +23,9 @@ attachment, then I will make the arrow more unclear so that, user can understand
 
 > follow back when the followers already following me. 
 
+> There are no comments, this comment will only show when there are totally no comments, not 
+in sub comments 
+
 ====================== To fix ===================
 
 Group about tab making darker 
@@ -59,6 +62,8 @@ php artisan make:migration add_preview_column_to_posts_table
 php artisan make:migration add_pinned_column_to_posts_table
 
 php artisan make:migration add_pinned_post_id_column_to_groups_and_users_tables
+
+php artisan make:migration add_foreign_key_on_comments_table_for_parent_id
 
 ==================== Further investigation ==============
 Lec: 34. Load more functionality. 1:04:00

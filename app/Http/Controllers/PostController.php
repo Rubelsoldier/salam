@@ -246,13 +246,17 @@ class PostController extends Controller
         $id = Auth::id();
 
         if($comment->isOwner(($id) || $post->isOwner($id))){
+
+            $allComments = Comment::getAllChildrenComments($comment);
+            $deletedCommentCount = count($allComments);
+
             $comment->delete();
 
             if (!$comment->isOwner($id)) {
                 $comment->user->notify(new CommentDeleted($comment, $post));
             }
 
-            return response('', 204);
+            return response(['deleted' => $deletedCommentCount], 200);
         }
 
             return response("You don't have permission to delete this comment.", 403);        

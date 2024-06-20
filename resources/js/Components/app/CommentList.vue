@@ -58,11 +58,9 @@ function deleteComment(comment) {
             props.data.comments.splice(commentIndex, 1)
             console.log(props.data.comments)
             if (props.parentComment) {
-                // props.parentComment.num_of_comments -= data.deleted;
-                props.parentComment.num_of_comments--
+                props.parentComment.num_of_comments -= data.deleted;
             }
-            // props.post.num_of_comments -= data.deleted;
-            props.post.num_of_comments--
+            props.post.num_of_comments -= data.deleted;
             emit('commentDelete', comment)
         })
 }
