@@ -58,7 +58,9 @@ class HomeController extends Controller
         return Inertia::render('Home',[
             'posts' => $posts,
             'groups'=> GroupResource::collection($groups),
-            'followings' => UserResource::collection($user->followings)
+            'followings' => UserResource::collection($user->followings),
+            'logoBlack' => asset('img/black-logo.png'),
+            'logoWhite' => asset('img/white-logo.png')
         ]);
     }
 }

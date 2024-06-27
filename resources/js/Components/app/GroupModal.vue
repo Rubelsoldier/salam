@@ -1,6 +1,6 @@
 <template>
     <BaseModal title="Create new Group" v-model="show" @hide="closeModal()" >
-        <div class="p-4 dark:text-gray-100">
+        <div class="p-4 dark:text-gray-200">
             <GroupForm :form="form"/>
         </div>
 

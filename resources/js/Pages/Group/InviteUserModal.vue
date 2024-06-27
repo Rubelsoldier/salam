@@ -61,7 +61,7 @@ function submit() {
 
 <template>
     <BaseModal title="Invite Users" v-model="show" @hide="closeModal">
-        <div class="p-4 dark:text-gray-100">
+        <div class="p-4 dark:text-gray-200">
             <div class="mb-3">
                 <label>Username or email</label>
                 <TextInput

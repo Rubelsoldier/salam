@@ -9,6 +9,8 @@
                         <div class="shrink-0 flex items-center">
                             <Link :href="route('dashboard')">
                                 <ApplicationLogo
+                                    :logoBlack="logoBlack" 
+                                    :logoWhite="logoWhite"
                                     class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-600"
                                 />
                             </Link>
@@ -66,7 +68,7 @@
                             </Dropdown>
                             <div v-else>
                                 <Link :href="route('login')" 
-                                      class="dark:text-gray-100"
+                                      class="dark:text-gray-200"
                                 >
                                     Login
                                 </Link>
@@ -165,6 +167,14 @@ import {MoonIcon} from '@heroicons/vue/24/solid'
 const showingNavigationDropdown = ref(false);
 const keywords = ref(usePage().props.search || '')
 const authUser = usePage().props.auth.user;
+const logoBlack = usePage().props.logoBlack;
+const logoWhite = usePage().props.logoWhite;
+
+const props = defineProps({    
+    logoWhite: String,
+    logoBlack: String
+}
+)
 
 function search() {
     router.get(route('search', encodeURIComponent(keywords.value)))

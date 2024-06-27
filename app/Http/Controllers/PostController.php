@@ -47,7 +47,9 @@ class PostController extends Controller
         ]);
         
         return inertia('Post/View', [
-            'post' => new PostResource($post)
+            'post' => new PostResource($post),
+            'logoBlack' => asset('img/black-logo.png'),
+            'logoWhite' => asset('img/white-logo.png')
         ]);
     }
 

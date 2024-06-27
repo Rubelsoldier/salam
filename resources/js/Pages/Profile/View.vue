@@ -1,6 +1,6 @@
 <template>
     <AuthenticatedLayout>
-        <div class="max-w-[768px] mx-auto h-full overflow-auto">
+        <div class="max-w-[1024px] mx-auto h-full overflow-auto">
             <div class="px-4">
                 <div v-show="showNotification && success"
                     class="my-2 py-2 px-3 font-medium text-sm bg-emerald-500 text-white">
@@ -9,7 +9,7 @@
                 <div v-if="errors.cover" class="my-2 py-2 px-3 font-medium text-sm bg-red-400 text-white">
                     {{ errors . cover }}
                 </div>
-                <div class="group relative bg-white  dark:bg-slate-950 dark:text-gray-100">
+                <div class="group relative bg-white  dark:bg-slate-950 dark:text-gray-200">
                     <img :src="coverImageSrc || user.cover_url || '/img/default_cover.jpg'"
                         class="w-full h-[200px] object-cover">
 

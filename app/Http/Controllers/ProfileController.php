@@ -64,7 +64,9 @@ class ProfileController extends Controller
             'posts' => $posts,
             'followers' => UserResource::collection($followers),
             'followings' => UserResource::collection($followings),
-            'photos' => PostAttachmentResource::collection($photos)
+            'photos' => PostAttachmentResource::collection($photos),
+            'logoBlack' => asset('img/black-logo.png'),
+            'logoWhite' => asset('img/white-logo.png')
         ]);
     }
 

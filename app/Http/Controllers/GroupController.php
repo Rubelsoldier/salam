@@ -89,7 +89,9 @@ class GroupController extends Controller
             'posts' => $posts,
             'users' => GroupUserResource::collection($users),
             'requests' => UserResource::collection($requests),
-            'photos' => PostAttachmentResource::collection($photos)
+            'photos' => PostAttachmentResource::collection($photos),
+            'logoBlack' => asset('img/black-logo.png'),
+            'logoWhite' => asset('img/white-logo.png')
         ]);
     }
 

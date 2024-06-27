@@ -64,7 +64,7 @@ function closeModal() {
                                 class="w-full max-w-md transform overflow-hidden rounded bg-white dark:bg-slate-900 text-left align-middle shadow-xl transition-all"
                             >
                                 <DialogTitle v-if="title" as="h3"
-                                             class="flex items-center justify-between py-3 px-4 font-medium bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-gray-100"
+                                             class="flex items-center justify-between py-3 px-4 font-medium bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-gray-200"
                                 >
                                     {{ title }}
                                     <button @click="closeModal"

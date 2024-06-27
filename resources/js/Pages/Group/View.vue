@@ -1,5 +1,5 @@
 <template>
-    <AuthenticatedLayout>
+    <AuthenticatedLayout :logoBlack="logoBlack" :logoWhite="logoWhite">
         <div class="max-w-[1024px] mx-auto h-full overflow-auto">
             <div class="px-4">
                 <div
@@ -14,7 +14,7 @@
                 >
                     {{ errors.cover }}
                 </div>
-                <div class="group relative bg-white dark:bg-slate-950 dark:text-gray-100">
+                <div class="group relative bg-white dark:bg-slate-950 dark:text-gray-200">
                     <img :src="coverImageSrc || group.cover_url || '/img/default_cover.jpg'"
                         class="w-full h-[200px] object-cover">
                     <div v-if="isCurrentUserAdmin" class="absolute top-2 right-2 ">
@@ -123,11 +123,11 @@
                     </TabList>
 
                     <TabPanels class="mt-2">
-                        <TabPanel class="bg-white dark:bg-slate-800 dark:text-gray-100 p-3 shadow">
+                        <TabPanel class="bg-white dark:bg-slate-800 dark:text-gray-200 shadow">
                             <template v-if="posts">
                                 <CreatePost :group="group"/>
                                 <PostList v-if="posts.data.length" :posts="posts.data" class="flex-1" />
-                                <div v-else class="py-8 text-center dark:text-gray-100">
+                                <div v-else class="py-8 text-center dark:text-gray-200">
                                     There are no posts in this group. Be the first and create it.
                                 </div>
                             </template>
@@ -222,6 +222,9 @@ const showNotification = ref(true)
 const coverImageSrc = ref('')
 const thumbnailImageSrc = ref('')
 const authUser = usePage().props.auth.user;
+const logoBlack = usePage().props.logoBlack;
+const logoWhite = usePage().props.logoWhite;
+
 const showInviteUserModal = ref(false);
 const searchKeyword = ref('');
 

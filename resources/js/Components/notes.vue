@@ -28,8 +28,6 @@ in sub comments
 
 ====================== To fix ===================
 
-Group about tab making darker 
-
 My profile details updated commit, need to fix the notificaiton bar. It's not 
 disappearing. 
 

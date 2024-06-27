@@ -44,7 +44,9 @@ class SearchController extends Controller
             'posts' => $posts,
             'search' => $search,
             'users' => UserResource::collection($users),
-            'groups' => GroupResource::collection($groups)
+            'groups' => GroupResource::collection($groups),
+            'logoBlack' => asset('img/black-logo.png'),
+            'logoWhite' => asset('img/white-logo.png')
         ]);
     }
 }
