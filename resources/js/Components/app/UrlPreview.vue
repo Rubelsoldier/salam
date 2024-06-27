@@ -13,7 +13,7 @@
     <a :href="url" target="_blank"
        v-else-if="url"
        class="block mt-4 border border-indigo-200 bg-indigo-50">
-        <div class="p-2">
+        <div class="p-2 dark:bg-slate-800">
             {{url}}
         </div>
     </a>

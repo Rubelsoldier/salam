@@ -1,3 +1,90 @@
+<template>
+    <!-- <pre>{{post.comments.length}}</pre> -->
+    <div v-if="authUser" class="flex gap-2 mb-3">
+        <Link :href="route('profile', authUser.username)">
+            <img :src="authUser.avatar_url"
+                 class="w-[40px] rounded-full border border-2 transition-all hover:border-blue-500 avatar-image"/>
+        </Link>
+        <div class="flex flex-1">
+            <InputTextarea v-model="newCommentText" placeholder="Enter your comment here" rows="1"
+                           class="w-full max-h-[160px] resize-none rounded-r-none"></InputTextarea>
+            <IndigoButton @click="createComment" class="rounded-l-none w-[100px] ">Submit</IndigoButton>
+        </div>
+    </div>
+    <div>
+        <div v-for="comment of data.comments" :key="comment.id" class="mb-4">
+            <div class="flex justify-between gap-2">
+                <div class="flex gap-2">
+                    <a href="javascript:void(0)">
+                        <img :src="comment.user.avatar_url"
+                             class="w-[40px] rounded-full border border-2 transition-all hover:border-blue-500 avatar-image"/>
+                    </a>
+                    <div>
+                        <h4 class="font-bold">
+                            <a href="javascript:void(0)" class="hover:underline">
+                                {{ comment.user.name }}
+                            </a>
+                        </h4>
+                        <small class="text-xs text-gray-400">{{ comment.updated_at }}</small>
+                    </div>
+                </div>
+                <EditDeleteDropdown :user="comment.user"
+                                    :post="post"
+                                    :comment="comment"
+                                    @edit="startCommentEdit(comment)"
+                                    @delete="deleteComment(comment)"/>
+            </div>
+            <div class="pl-10">
+                <div v-if="editingComment && editingComment.id === comment.id">
+                    <InputTextarea v-model="editingComment.comment" placeholder="Enter your comment here"
+                                   rows="1" class="w-full max-h-[160px] resize-none"></InputTextarea>
+
+                    <div class="flex gap-2 justify-end">
+                        <button @click="editingComment = null" class="rounded-r-none text-indigo-500">cancel
+                        </button>
+                        <IndigoButton @click="updateComment" class="w-[100px]">update
+                        </IndigoButton>
+                    </div>
+                </div>
+                <ReadMoreReadLess v-else :content="comment.comment" content-class="text-sm flex flex-1"/>
+                <Disclosure>
+                    <div class="mt-1 flex gap-2">
+                        <button @click="sendCommentReaction(comment)"
+                                class="flex items-center text-xs text-indigo-500 py-0.5 px-1  rounded-lg"
+                                :class="[
+                                            comment.current_user_has_reaction ?
+                                             'bg-indigo-50 hover:bg-indigo-100' :
+                                             'hover:bg-indigo-50'
+                                        ]">
+                            <HandThumbUpIcon class="w-3 h-3 mr-1"/>
+                            <span class="mr-2">{{ comment.num_of_reactions }}</span>
+                            {{ comment.current_user_has_reaction ? 'unlike' : 'like' }}
+                        </button>
+                        <!-- <pre>{{comment}}</pre> -->
+                        <DisclosureButton
+                            class="flex items-center text-xs text-indigo-500 py-0.5 px-1 hover:bg-indigo-100 rounded-lg">
+                            <ChatBubbleLeftEllipsisIcon class="w-3 h-3 mr-1"/>
+                            <span class="mr-2">{{ comment.num_of_comments }}</span>
+                            comments
+                        </DisclosureButton>
+                    </div>                    
+                    <DisclosurePanel class="mt-3">
+                        <CommentList :post="post"
+                                     :data="{comments: comment.comments}"
+                                     :parent-comment="comment"
+                                     @comment-create="onCommentCreate"
+                                     @comment-delete="onCommentDelete"
+                        />                                                    
+                    </DisclosurePanel>
+                </Disclosure>
+            </div>
+        </div>
+        <div v-if="!post.comments.length" class="py-4 text-center dark:text-gray-200">
+            There are no comments.
+        </div>
+    </div>
+</template>
+
 <script setup>
 import {ChatBubbleLeftEllipsisIcon, HandThumbUpIcon} from "@heroicons/vue/24/outline/index.js";
 import ReadMoreReadLess from "@/Components/app/ReadMoreReadLess.vue";
@@ -102,92 +189,6 @@ function onCommentDelete(comment) {
     emit('commentDelete', comment)
 }
 </script>
-
-<template>
-    <div v-if="authUser" class="flex gap-2 mb-3">
-        <Link :href="route('profile', authUser.username)">
-            <img :src="authUser.avatar_url"
-                 class="w-[40px] rounded-full border border-2 transition-all hover:border-blue-500 avatar-image"/>
-        </Link>
-        <div class="flex flex-1">
-            <InputTextarea v-model="newCommentText" placeholder="Enter your comment here" rows="1"
-                           class="w-full max-h-[160px] resize-none rounded-r-none"></InputTextarea>
-            <IndigoButton @click="createComment" class="rounded-l-none w-[100px] ">Submit</IndigoButton>
-        </div>
-    </div>
-    <div>
-        <div v-for="comment of data.comments" :key="comment.id" class="mb-4">
-            <div class="flex justify-between gap-2">
-                <div class="flex gap-2">
-                    <a href="javascript:void(0)">
-                        <img :src="comment.user.avatar_url"
-                             class="w-[40px] rounded-full border border-2 transition-all hover:border-blue-500 avatar-image"/>
-                    </a>
-                    <div>
-                        <h4 class="font-bold">
-                            <a href="javascript:void(0)" class="hover:underline">
-                                {{ comment.user.name }}
-                            </a>
-                        </h4>
-                        <small class="text-xs text-gray-400">{{ comment.updated_at }}</small>
-                    </div>
-                </div>
-                <EditDeleteDropdown :user="comment.user"
-                                    :post="post"
-                                    :comment="comment"
-                                    @edit="startCommentEdit(comment)"
-                                    @delete="deleteComment(comment)"/>
-            </div>
-            <div class="pl-10">
-                <div v-if="editingComment && editingComment.id === comment.id">
-                    <InputTextarea v-model="editingComment.comment" placeholder="Enter your comment here"
-                                   rows="1" class="w-full max-h-[160px] resize-none"></InputTextarea>
-
-                    <div class="flex gap-2 justify-end">
-                        <button @click="editingComment = null" class="rounded-r-none text-indigo-500">cancel
-                        </button>
-                        <IndigoButton @click="updateComment" class="w-[100px]">update
-                        </IndigoButton>
-                    </div>
-                </div>
-                <ReadMoreReadLess v-else :content="comment.comment" content-class="text-sm flex flex-1"/>
-                <Disclosure>
-                    <div class="mt-1 flex gap-2">
-                        <button @click="sendCommentReaction(comment)"
-                                class="flex items-center text-xs text-indigo-500 py-0.5 px-1  rounded-lg"
-                                :class="[
-                                            comment.current_user_has_reaction ?
-                                             'bg-indigo-50 hover:bg-indigo-100' :
-                                             'hover:bg-indigo-50'
-                                        ]">
-                            <HandThumbUpIcon class="w-3 h-3 mr-1"/>
-                            <span class="mr-2">{{ comment.num_of_reactions }}</span>
-                            {{ comment.current_user_has_reaction ? 'unlike' : 'like' }}
-                        </button>
-                        <!-- <pre>{{comment}}</pre> -->
-                        <DisclosureButton
-                            class="flex items-center text-xs text-indigo-500 py-0.5 px-1 hover:bg-indigo-100 rounded-lg">
-                            <ChatBubbleLeftEllipsisIcon class="w-3 h-3 mr-1"/>
-                            <span class="mr-2">{{ comment.num_of_comments }}</span>
-                            comments
-                        </DisclosureButton>
-                    </div>                    
-                    <DisclosurePanel class="mt-3">
-                        <CommentList :post="post"
-                                     :data="{comments: comment.comments}"
-                                     :parent-comment="comment"
-                                     @comment-create="onCommentCreate"
-                                     @comment-delete="onCommentDelete"
-                        />                                                    
-                    </DisclosurePanel>
-                </Disclosure>
-            </div>
-        </div>
-        <div v-if="!data.comments.length" class="py-4 text-center dark:text-gray-200">
-            There are no comments.
-        </div>
-    </div>
-</template>
 
 <style scoped>
 .avatar-image{

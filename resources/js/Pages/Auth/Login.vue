@@ -5,7 +5,7 @@
             <h2 class="text-2xl text-center">Login</h2>
             <span class="text-gray-400 text-sm">or</span>
             <div class="flex justify-center">
-                <Link :href="route('register')" class="inline-block hover:underline">
+                <Link :href="route('register')" class="inline-block hover:underline dark:text-gray-200">
                     create new account
                 </Link>
             </div>
@@ -17,7 +17,7 @@
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" value="Email" class="dark:text-gray-200"/>
 
                 <TextInput
                     id="email"
@@ -29,11 +29,11 @@
                     autocomplete="username"
                 />
 
-                <InputError class="mt-2" :message="form.errors.email" />
+                <InputError class="mt-2 dark:text-gray-200" :message="form.errors.email" />
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
+                <InputLabel for="password" value="Password" class="dark:text-gray-200"/>
 
                 <TextInput
                     id="password"
@@ -50,7 +50,7 @@
             <div class="block mt-4">
                 <label class="flex items-center">
                     <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ms-2 text-sm text-gray-600">Remember me</span>
+                    <span class="ms-2 text-sm text-gray-600 dark:text-gray-200">Remember me</span>
                 </label>
             </div>
 
@@ -58,7 +58,7 @@
                 <Link
                     v-if="canResetPassword"
                     :href="route('password.request')"
-                    class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:text-gray-200 dark:hover:text-gray-400"
                 >
                     Forgot your password?
                 </Link>
