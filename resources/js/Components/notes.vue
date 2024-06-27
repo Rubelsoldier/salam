@@ -28,14 +28,7 @@ in sub comments
 
 ====================== To fix ===================
 
-My profile details updated commit, need to fix the notificaiton bar. It's not 
-disappearing. 
-
-deleting comment and its sub comments doesn't decrease total comment number 
-
-deleting post is not working 
-
-logout/profile link , sometimes not working !
+preview link exceeded the div
 
 When user is sending group joining request, is immediately showing in users tab, also in 
 request tab. It should be only showing in request tab not in users tab until approve. 
