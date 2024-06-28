@@ -67,12 +67,12 @@ class GroupController extends Controller
         }
 
         $users = User::query()
-        ->select(['users.*', 'gu.role', 'gu.status', 'gu.group_id'])
-        ->join('group_users AS gu', 'gu.user_id', 'users.id')
-        ->orderBy('users.name')
-        ->where('group_id', $group->id)
-        ->get();
-        
+            ->select(['users.*', 'gu.role', 'gu.status', 'gu.group_id'])
+            ->join('group_users AS gu', 'gu.user_id', 'users.id')
+            ->orderBy('users.name')
+            ->where('group_id', $group->id)
+            ->get();        
+
         $requests = $group->pendingUsers()->orderBy('name')->get();
 
         $photos = PostAttachment::query()
