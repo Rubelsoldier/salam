@@ -30,9 +30,6 @@ in sub comments
 
 preview link exceeded the div
 
-When user is sending group joining request, is immediately showing in users tab, also in 
-request tab. It should be only showing in request tab not in users tab until approve. 
-
 If I uploade an non supporting file type, then it shows red mark border, but after deleting 
 the specific file, the red border shows to another supported attachment.
 

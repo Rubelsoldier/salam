@@ -57,7 +57,9 @@ class GroupController extends Controller
                 'group' => new GroupResource($group),
                 'posts' => null,
                 'users' => [],
-                'requests' => []
+                'requests' => [],
+                'logoBlack' => asset('img/black-logo.png'),
+                'logoWhite' => asset('img/white-logo.png')
             ]);
         }
 
