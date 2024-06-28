@@ -30,8 +30,7 @@ in sub comments
 
 preview link exceeded the div
 
-If I uploade an non supporting file type, then it shows red mark border, but after deleting 
-the specific file, the red border shows to another supported attachment.
+
 
 ================ Commands used in this project =============
 

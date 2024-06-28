@@ -45,7 +45,7 @@
                         </div>
 
                         <button
-                            @click="removeFile(myFile)"
+                            @click="removeFile(myFile,ind)"
                             class="absolute z-20 right-3 top-3 w-7 h-7 flex items-center justify-center bg-black/30 text-white rounded-full hover:bg-black/40">
                             <XMarkIcon class="h-5 w-5"/>
                         </button>
@@ -259,13 +259,14 @@ function processErrors(errors) {
     }
 }
 
-function removeFile(myFile) {
+function removeFile(myFile,ind) {
     if (myFile.file) {
         attachmentFiles.value = attachmentFiles.value.filter(f => f !== myFile)
     } else {
         form.deleted_file_ids.push(myFile.id)
         myFile.deleted = true
-    }   
+    }    
+    attachmentErrors.value[ind] = '';    
 }
 
 function undoDelete(myFile) {
