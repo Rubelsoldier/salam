@@ -27,6 +27,7 @@
                     required
                     autofocus
                     autocomplete="username"
+                    placeholder="Enter your email"
                 />
 
                 <InputError class="mt-2 dark:text-gray-200" :message="form.errors.email" />
@@ -42,6 +43,7 @@
                     v-model="form.password"
                     required
                     autocomplete="current-password"
+                    placeholder="Enter your password"
                 />
 
                 <InputError class="mt-2" :message="form.errors.password" />

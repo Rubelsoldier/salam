@@ -1,13 +1,17 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 
+const props = defineProps({
+    placeholder: String
+})
+
 const model = defineModel({
     type: String,
     required: true,
 });
 
 const input = ref(null);
-const placeholder = ref('Enter your text here');
+// const placeholder = ref('Enter your text here');
 
 onMounted(() => {
     if (input.value.hasAttribute('autofocus')) {
