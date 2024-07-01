@@ -29,6 +29,24 @@
                         </button>
                     </div>
 
+                    <!-- notification gallery  -->
+                    <div>
+                            <div @click="toggleNotifications">
+                                
+                            <BellAlertIcon class="w-5 h-5 dark:text-white cursor-pointer" />
+                                
+                                <span v-if="unreadCount" class="notification-count">{{ unreadCount }}</span>
+                            </div>
+                            <div v-if="showNotifications" class="notification-list">
+                                <ul>
+                                    <li v-for="notification in notifications" :key="notification.id">
+                                        {{ formatNotification(notification) }}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>                      
+                    <!-- notification gallery  -->
+
                     <div class="hidden sm:flex sm:items-center">
                         <!-- Settings Dropdown -->
                         <div class="ms-3 relative ">
@@ -162,7 +180,7 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import {Link, router, usePage} from '@inertiajs/vue3';
 import TextInput from '@/Components/TextInput.vue';
-import {MoonIcon} from '@heroicons/vue/24/solid'
+import {BellAlertIcon,MoonIcon} from '@heroicons/vue/24/solid'
 
 const showingNavigationDropdown = ref(false);
 const keywords = ref(usePage().props.search || '')
