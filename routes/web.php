@@ -52,6 +52,9 @@ use App\Http\Controllers\ProfileController;
 
         Route::post('/change-role/{group:slug}', [GroupController::class, 'changeRole'])
             ->name('group.changeRole');
+        
+        Route::delete('/delete-group/{group:id}', [GroupController::class, 'destroy'])
+            ->name('group.delete');
 
     });            
     
@@ -108,7 +111,6 @@ use App\Http\Controllers\ProfileController;
     Route::get('/search/{search?}', [SearchController::class, 'search'])
         ->name('search');
             
-
 });
         
 require __DIR__.'/auth.php';

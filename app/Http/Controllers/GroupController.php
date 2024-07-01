@@ -344,8 +344,6 @@ class GroupController extends Controller
         }
         return back();
     }
-
-
     
     /**
      * Update the specified resource in storage.
@@ -362,6 +360,20 @@ class GroupController extends Controller
      */
     public function destroy(Group $group)
     {
-        //
+
+        if (!$group->isAdmin(Auth::id())) {
+            return response("You don't have permission to perform this action", 403);
+        }
+
+
+        if ($group) {
+            // $user = $group->user;
+            $group->delete();
+
+            // $user->notify(new UserRemovedFromGroup($group));
+        }
+
+        return redirect()->route('dashboard')->with('success', 'Group was deleted successfully');        
+
     }
 }

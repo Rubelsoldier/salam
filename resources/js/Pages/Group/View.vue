@@ -1,4 +1,5 @@
 <template>
+    <!-- 33<pre>{{ success }}</pre>33 -->
     <AuthenticatedLayout :logoBlack="logoBlack" :logoWhite="logoWhite">
         <div class="max-w-[1024px] mx-auto h-full overflow-auto">
             <div class="px-4">
@@ -118,7 +119,7 @@
                             <TabItem text="Photos" :selected="selected"/>
                         </Tab>
                         <Tab v-slot="{ selected }" as="template">
-                            <TabItem text="About" :selected="selected"/>
+                            <TabItem text="Details" :selected="selected"/>
                         </Tab>
                     </TabList>
 
@@ -180,9 +181,14 @@
                         <TabPanel>
                             <template v-if="isCurrentUserAdmin">
                                 <GroupForm :form = "aboutForm" />
-                                <PrimaryButton @click="updateGroup" class="dark: bg-slate-700 hover:bg-slate-500">
-                                    Submit
-                                </PrimaryButton> 
+                                <div class="flex justify-between  items-center flex-1">                                    
+                                    <PrimaryButton @click="updateGroup" class="dark: bg-slate-700 hover:bg-slate-500">
+                                        Submit
+                                    </PrimaryButton> 
+                                    <DangerButton @click="deleteGroup(group)">
+                                        Delete Group
+                                    </DangerButton>
+                                </div>
                             </template>
                             <div v-else class="ck-content-output dark:text-gray-400" v-html="group.about">
                                 
@@ -205,6 +211,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import TabItem from "@/Pages/Profile/Partials/TabItem.vue";
 import {useForm} from '@inertiajs/vue3'
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import DangerButton from "@/Components/DangerButton.vue";
 import InviteUserModal from './InviteUserModal.vue';
 import UserListItem from '@/Components/app/UserListItem.vue'
 import GroupForm from '@/Components/app/GroupForm.vue'
@@ -212,6 +219,20 @@ import TextInput from "@/Components/TextInput.vue";
 import PostList from '@/Components/app/PostList.vue';
 import CreatePost from '@/Components/app/CreatePost.vue';
 import TabPhotos from '../Profile/TabPhotos.vue';
+
+const props = defineProps({
+    errors: Object,
+    success: {
+        type: String,
+    },
+    group: {
+        type: Object
+    },    
+    posts: Object,
+    users: Array,
+    requests: Array,
+    photos: Array
+});
 
 const imagesForm = useForm({
     thumbnail: null,
@@ -230,20 +251,6 @@ const searchKeyword = ref('');
 
 const isCurrentUserAdmin = computed(() => props.group.role === 'admin')
 const isJoinedToGroup = computed(() => props.group.role && props.group.status === 'approved')
-
-const props = defineProps({
-    errors: Object,
-    success: {
-        type: String,
-    },
-    group: {
-        type: Object
-    },    
-    posts: Object,
-    users: Array,
-    requests: Array,
-    photos: Array
-});
 
 const aboutForm = useForm({
     name: usePage().props.group.name,
@@ -356,8 +363,29 @@ function deleteUser(user) {
     const form = useForm({
         user_id: user.id,
     })
+
     form.delete(route('group.removeUser', props.group.slug), {
         preserveScroll: true
+    })
+}
+
+function deleteGroup(group){
+    if (!window.confirm(`Are you sure you want to delete this  "${group.name}" ?`)) {
+        return false;
+    }
+    
+    const form = useForm({
+        group: group
+    })
+
+    form.delete(route('group.delete', props.group), {
+        preserveScroll: true,
+        onSuccess: () => {
+            showNotification.value = true;            
+            setTimeout(() => {
+                showNotification.value = false
+            }, 3000)
+        },
     })
 }
 
