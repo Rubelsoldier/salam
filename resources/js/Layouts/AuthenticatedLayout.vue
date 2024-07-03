@@ -28,23 +28,24 @@
                             <MoonIcon class="w-5 h-5"/>
                         </button>
                     </div>
+                    <BellAlertIcon class="w-5 h-5 dark:text-white cursor-pointer" />
 
                     <!-- notification gallery  -->
-                    <div>
-                            <div @click="toggleNotifications">
-                                
-                            <BellAlertIcon class="w-5 h-5 dark:text-white cursor-pointer" />
-                                
-                                <span v-if="unreadCount" class="notification-count">{{ unreadCount }}</span>
-                            </div>
-                            <div v-if="showNotifications" class="notification-list">
-                                <ul>
-                                    <li v-for="notification in notifications" :key="notification.id">
-                                        {{ formatNotification(notification) }}
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>                      
+                    <!-- <div>
+                        <div @click="toggleNotifications">
+                            
+                        <BellAlertIcon class="w-5 h-5 dark:text-white cursor-pointer" />
+                            
+                            <span v-if="unreadCount" class="notification-count">{{ unreadCount }}</span>
+                        </div>
+                        <div v-if="showNotifications" class="notification-list">
+                            <ul>
+                                <li v-for="notification in notifications" :key="notification.id">
+                                    {{ formatNotification(notification) }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>                       -->
                     <!-- notification gallery  -->
 
                     <div class="hidden sm:flex sm:items-center">

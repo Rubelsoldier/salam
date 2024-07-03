@@ -376,4 +376,31 @@ class GroupController extends Controller
         return redirect()->route('dashboard')->with('success', 'Group was deleted successfully');        
 
     }
+
+    public function cancelGroupRequest(Group $group) {
+
+        $status = GroupUser::where('user_id', Auth::id())
+                    ->where('group_id', $group->id)
+                    ->value('status');
+
+        $group = GroupUser::where('user_id', Auth::id())
+            ->where('group_id', $group->id)
+            ->whereIn('status', ['pending', 'approved'])            
+            ->first();
+        
+        if($group){
+            $group->delete();
+        }        
+        
+        if($status === 'approved'){        
+            return back()->with('success','You have left from this group');
+        } elseif($status === 'pending') {
+            return back()->with('success','You have cancelled joining from this group');
+        } else {
+            // Handle cases where status is neither 'approved' nor 'pending'
+            return back()->with('error', 'An error occurred while processing your request.');
+        }
+
+        
+    }
 }

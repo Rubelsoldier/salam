@@ -21,7 +21,7 @@
                 </div>
                 <div v-if="showRoleDropdown">
                     <select @change="$emit('roleChange', user, $event.target.value)"
-                            class="rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 max-w-xs text-sm leading-6"
+                            class="rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 max-w-xs text-sm leading-6 dark:bg-gray-800 dark:text-gray-200"
                             :disabled="disableRoleDropdown"
                     >
                         <option :selected="user.role === 'admin'">admin</option>

@@ -55,6 +55,9 @@ use App\Http\Controllers\ProfileController;
         
         Route::delete('/delete-group/{group:id}', [GroupController::class, 'destroy'])
             ->name('group.delete');
+        
+        Route::delete('/cancel-group-request/{group:id}', [GroupController::class, 'cancelGroupRequest'])
+            ->name('group.cancel.request');
 
     });            
     

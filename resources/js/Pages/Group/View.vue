@@ -1,16 +1,13 @@
 <template>
-    <!-- 33<pre>{{ success }}</pre>33 -->
     <AuthenticatedLayout :logoBlack="logoBlack" :logoWhite="logoWhite">
         <div class="max-w-[1024px] mx-auto h-full overflow-auto">
             <div class="px-4">
-                <div
-                    v-show="showNotification && success"
-                    class="my-2 py-2 px-3 font-medium text-sm bg-emerald-500 text-white"
-                >
+                <div v-show="showNotification && success"
+                    class="my-2 py-2 px-3 font-medium text-sm bg-emerald-500 text-white">
                     {{ success }}
                 </div>
-                <div
-                    v-if="errors.cover"
+                <div 
+                    v-if="errors.cover" 
                     class="my-2 py-2 px-3 font-medium text-sm bg-red-400 text-white"
                 >
                     {{ errors.cover }}
@@ -19,86 +16,88 @@
                     <img :src="coverImageSrc || group.cover_url || '/img/default_cover.jpg'"
                         class="w-full h-[200px] object-cover">
                     <div v-if="isCurrentUserAdmin" class="absolute top-2 right-2 ">
-                        <button
+                        <button 
                             v-if="!coverImageSrc"
                             class="bg-gray-50 hover:bg-gray-100 text-gray-800 py-1 px-2 text-xs flex items-center opacity-0 group-hover:opacity-100">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-3 h-3 mr-2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"/>
+                                    d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"/>
+                                    d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
                             </svg>
 
                             Update Cover Image
                             <input type="file" class="absolute left-0 top-0 bottom-0 right-0 opacity-0"
-                                @change="onCoverChange"/>
+                                @change="onCoverChange" />
                         </button>
                         <div v-else class="flex gap-2 bg-white p-2 opacity-0 group-hover:opacity-100">
-                            <button
-                                @click="resetCoverImage"
+                            <button @click="resetCoverImage"
                                 class="bg-gray-50 hover:bg-gray-100 text-gray-800 py-1 px-2 text-xs flex items-center">
-                                <XMarkIcon class="h-3 w-3 mr-2"/>
+                                <XMarkIcon class="h-3 w-3 mr-2" />
                                 Cancel
                             </button>
-                            <button
-                                @click="submitCoverImage"
+                            <button @click="submitCoverImage"
                                 class="bg-gray-800 hover:bg-gray-900 text-gray-100 py-1 px-2 text-xs flex items-center">
-                                <CheckCircleIcon class="h-3 w-3 mr-2"/>
+                                <CheckCircleIcon class="h-3 w-3 mr-2" />
                                 Submit
                             </button>
                         </div>
                     </div>
 
                     <div class="flex">
-                        <div class="flex items-center justify-center relative group/thumbnail -mt-[64px] ml-[48px] w-[128px] h-[128px] rounded-full">
+                        <div
+                            class="flex items-center justify-center relative group/thumbnail -mt-[64px] ml-[48px] w-[128px] h-[128px] rounded-full">
                             <img :src="thumbnailImageSrc || group.thumbnail_url || '/img/default_avatar.webp'"
                                 class="w-full h-full object-cover rounded-full">
-                            <button
-                                v-if="isCurrentUserAdmin && !thumbnailImageSrc"
+                            <button v-if="isCurrentUserAdmin && !thumbnailImageSrc"
                                 class="absolute left-0 top-0 right-0 bottom-0 bg-black/50 text-gray-200 rounded-full opacity-0 flex items-center justify-center group-hover/thumbnail:opacity-100">
-                                <CameraIcon class="w-8 h-8"/>
+                                <CameraIcon class="w-8 h-8" />
 
                                 <input type="file" class="absolute left-0 top-0 bottom-0 right-0 opacity-0"
-                                    @change="onThumbnailChange"/>
+                                    @change="onThumbnailChange" />
                             </button>
 
                             <div v-else-if="isCurrentUserAdmin" class="absolute top-1 right-0 flex flex-col gap-2">
-                                <button
-                                    @click="resetThurmbnailImage"
+                                <button @click="resetThurmbnailImage"
                                     class="w-7 h-7 flex items-center justify-center bg-red-500/80 text-white rounded-full">
-                                    <XMarkIcon class="h-5 w-5"/>
+                                    <XMarkIcon class="h-5 w-5" />
                                 </button>
-                                <button
-                                    @click="submitThurmbnailImage"
+                                <button @click="submitThurmbnailImage"
                                     class="w-7 h-7 flex items-center justify-center bg-emerald-500/80 text-white rounded-full">
-                                    <CheckCircleIcon class="h-5 w-5"/>
+                                    <CheckCircleIcon class="h-5 w-5" />
                                 </button>
                             </div>
                         </div>
                         <div class="flex justify-between items-center flex-1 p-4">
                             <h2 class="font-bold text-lg">{{ group.name }}</h2>
 
-                            <PrimaryButton 
-                                    v-if="!authUser" :href="route('login')"
-                                >Login to join to this group
+                            <PrimaryButton v-if="!authUser" :href="route('login')">Login to join to this group
+                            </PrimaryButton>
+
+                            <PrimaryButton v-if="isCurrentUserAdmin" @click="showInviteUserModal = true">Invite Users
+                            </PrimaryButton>
+                            <PrimaryButton v-if="authUser && !group.role && group.auto_approval" @click="joinToGroup">
+                                Join to Group
+                            </PrimaryButton>
+                            <PrimaryButton v-if="authUser && group.status=='pending'"
+                                @click="cancelGroupRequest(group)">Cancel Request
                             </PrimaryButton>
 
                             <PrimaryButton 
-                                        v-if="isCurrentUserAdmin"
-                                        @click="showInviteUserModal = true"              
-                                >Invite Users
+                                v-if="authUser && !group.role && !group.auto_approval" @click="joinToGroup"
+                            >Request to join
                             </PrimaryButton>
-                            <PrimaryButton 
-                                        v-if="authUser && !group.role && group.auto_approval"
-                                        @click="joinToGroup"
-                                >Join to Group
-                            </PrimaryButton>
-                            <PrimaryButton 
-                                        v-if="authUser && !group.role && !group.auto_approval"
-                                        @click="joinToGroup"
-                                    >Request to join
-                            </PrimaryButton>
+
+                            <select
+                                v-if="(authUser && group.status=='approved') && !isCurrentUserAdmin "
+                                @change="leaveGroup(group,$event)"
+                                class="rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 max-w-xs text-sm leading-6 dark:bg-gray-800 dark:text-gray-200"
+                            >
+                                <option value="joined">joined</option>
+                                <option value="leave">leave</option>
+                            </select>                            
+
                         </div>
                     </div>
                 </div>
@@ -107,26 +106,26 @@
                 <TabGroup>
                     <TabList class="flex bg-white dark:bg-slate-950 dark:text-white">
                         <Tab v-slot="{ selected }" as="template">
-                            <TabItem text="Posts" :selected="selected"/>
+                            <TabItem text="Posts" :selected="selected" />
                         </Tab>
                         <Tab v-if="isJoinedToGroup" v-slot="{ selected }" as="template">
-                            <TabItem text="Users" :selected="selected"/>
+                            <TabItem text="Users" :selected="selected" />
                         </Tab>
                         <Tab v-if="isCurrentUserAdmin" v-slot="{ selected }" as="template">
-                            <TabItem text="Pending Requests" :selected="selected"/>
+                            <TabItem text="Pending Requests" :selected="selected" />
                         </Tab>
                         <Tab v-slot="{ selected }" as="template">
-                            <TabItem text="Photos" :selected="selected"/>
+                            <TabItem text="Photos" :selected="selected" />
                         </Tab>
                         <Tab v-slot="{ selected }" as="template">
-                            <TabItem text="Details" :selected="selected"/>
+                            <TabItem text="Details" :selected="selected" />
                         </Tab>
                     </TabList>
 
                     <TabPanels class="mt-2">
                         <TabPanel class="bg-white dark:bg-slate-800 dark:text-gray-200 shadow">
                             <template v-if="posts">
-                                <CreatePost :group="group"/>
+                                <CreatePost :group="group" />
                                 <PostList v-if="posts.data.length" :posts="posts.data" class="flex-1" />
                                 <div v-else class="py-8 text-center dark:text-gray-200">
                                     There are no posts in this group. Be the first and create it.
@@ -134,44 +133,25 @@
                             </template>
                             <div v-else class="py-8 text-center dark:text-gray-400">
                                 You don't have permission to view these posts.
-                            </div>  
+                            </div>
                         </TabPanel>
                         <TabPanel v-if="isJoinedToGroup">
                             <div class="mb-3">
-                                <TextInput :model-value="searchKeyword" placeholder="Type to search" class="w-full"/>
+                                <TextInput :model-value="searchKeyword" placeholder="Type to search" class="w-full" />
                             </div>
                             <div class="grid grid-cols-2 gap-3">
-                                <UserListItem 
-                                        v-for="user of users" 
-                                        :user="user" 
-                                        :key="user.id"
-                                        :show-role-dropdown="isCurrentUserAdmin"
-                                        @role-change="onRoleChange"
-                                        :disable-role-dropdown="group.user_id === user.id"
-                                        class="shadow rounded-lg"
-                                        @delete="deleteUser"
-                                />
+                                <UserListItem v-for="user of users" :user="user" :key="user.id"
+                                    :show-role-dropdown="isCurrentUserAdmin" @role-change="onRoleChange"
+                                    :disable-role-dropdown="group.user_id === user.id" class="shadow rounded-lg"
+                                    @delete="deleteUser" />
                             </div>
                         </TabPanel>
-                        <TabPanel 
-                                v-if="isCurrentUserAdmin"                                 
-                        >
-                            <div class="grid grid-cols-2 gap-3"
-                                 v-if="requests.length"
-                            >
-                                <UserListItem 
-                                        v-for="user of requests" 
-                                        :user="user" 
-                                        :key="user.id"
-                                        :for-approve="true"
-                                        class="shadow rounded-lg"
-                                        @approve="approveUser"
-                                        @reject="rejectUser"
-                                />
+                        <TabPanel v-if="isCurrentUserAdmin">
+                            <div class="grid grid-cols-2 gap-3" v-if="requests.length">
+                                <UserListItem v-for="user of requests" :user="user" :key="user.id" :for-approve="true"
+                                    class="shadow rounded-lg" @approve="approveUser" @reject="rejectUser" />
                             </div>
-                            <div v-else
-                                 class="py-8 text-center dark:text-gray-400"
-                            >
+                            <div v-else class="py-8 text-center dark:text-gray-400">
                                 There are no pending requests
                             </div>
                         </TabPanel>
@@ -180,18 +160,20 @@
                         </TabPanel>
                         <TabPanel>
                             <template v-if="isCurrentUserAdmin">
-                                <GroupForm :form = "aboutForm" />
-                                <div class="flex justify-between  items-center flex-1">                                    
+
+                                <GroupForm :form="aboutForm" />
+
+                                <div class="flex justify-between  items-center flex-1">
                                     <PrimaryButton @click="updateGroup" class="dark: bg-slate-700 hover:bg-slate-500">
                                         Submit
-                                    </PrimaryButton> 
+                                    </PrimaryButton>
                                     <DangerButton @click="deleteGroup(group)">
                                         Delete Group
                                     </DangerButton>
                                 </div>
                             </template>
                             <div v-else class="ck-content-output dark:text-gray-400" v-html="group.about">
-                                
+
                             </div>
                         </TabPanel>
                     </TabPanels>
@@ -319,7 +301,15 @@ function submitThurmbnailImage() {
 function joinToGroup() {
     const form = useForm({})
 
-    form.post(route('group.join', props.group.slug))
+    form.post(route('group.join', props.group.slug),{
+        preserveScroll: true,
+        onSuccess: () => {
+            showNotification.value = true;
+            setTimeout(() => {
+                showNotification.value = false
+            }, 3000)
+        }
+    })
 }
 
 function approveUser(user){
@@ -328,7 +318,15 @@ function approveUser(user){
         action: 'approve'
     })
 
-    form.post(route('group.approveRequest', props.group.slug))
+    form.post(route('group.approveRequest', props.group.slug),{
+        preserveScroll: true,
+        onSuccess: () => {
+            showNotification.value = true;
+            setTimeout(() => {
+                showNotification.value = false
+            }, 3000)
+        }
+    })
 }
 
 function rejectUser(user) {
@@ -351,7 +349,13 @@ function onRoleChange(user, role) {
 
 function updateGroup(){
     aboutForm.put(route('group.update', props.group.slug), {
-        preserveScroll: true
+        preserveScroll: true,
+        onSuccess: () => {
+            showNotification.value = true;
+            setTimeout(() => {
+                showNotification.value = false
+            }, 3000)
+        }
     })
 }
 
@@ -387,6 +391,29 @@ function deleteGroup(group){
             }, 3000)
         },
     })
+}
+
+function cancelGroupRequest(group){
+    const form = useForm({
+        group: group
+    })
+
+    form.delete(route('group.cancel.request', props.group), {
+        preserveScroll: true,
+        onSuccess: () => {
+            showNotification.value = true;            
+            setTimeout(() => {
+                showNotification.value = false
+            }, 3000)
+        },
+    })
+}
+
+function leaveGroup(group,event){
+    const selectedValue = event.target.value;
+        if (selectedValue === 'leave') {
+            this.cancelGroupRequest(group);
+        }
 }
 
 </script>
