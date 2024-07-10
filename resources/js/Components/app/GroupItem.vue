@@ -4,7 +4,7 @@
             <img :src="group.thumbnail_url" class="w-[32px] rounded-full avatar-image"/>
             <div class="flex-1">
                 <div class="flex items-center justify-between">
-                    <h3 class="font-black">{{ group.name }}</h3>
+                    <h3 class="font-black dark:text-gray-200">{{ group.name }}</h3>
                 </div>
                 <!-- <div class="text-xs text-gray-500" v-html="group.description"></div> -->
                  
