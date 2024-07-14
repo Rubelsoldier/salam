@@ -12,7 +12,7 @@
             
             <PaperAirplaneIcon 
                 @click="createComment"
-                class="w-5 h-5"
+                class="w-5 h-5 cursor-pointer"
             />
             
         </div>
@@ -34,7 +34,7 @@
                         <small class="text-xs text-gray-400">{{ comment.updated_at }}</small>
                     </div>
                 </div>
-                <EditDeleteDropdown :user="comment.user"
+                <EditDeleteDropdownComment :user="comment.user"
                                     :post="post"
                                     :comment="comment"
                                     @edit="startCommentEdit(comment)"
@@ -96,7 +96,7 @@ import {ChatBubbleLeftEllipsisIcon, HandThumbUpIcon} from "@heroicons/vue/24/out
 import ReadMoreReadLess from "@/Components/app/ReadMoreReadLess.vue";
 import IndigoButton from "@/Components/app/IndigoButton.vue";
 import InputTextarea from "@/Components/InputTextarea.vue";
-import EditDeleteDropdown from "@/Components/app/EditDeleteDropdown.vue";
+import EditDeleteDropdownComment from "@/Components/app/EditDeleteDropdownComment.vue";
 import {usePage, Link} from "@inertiajs/vue3";
 import {ref} from "vue";
 import axiosClient from "@/axiosClient.js";

@@ -23,10 +23,10 @@
             class="absolute z-10 right-0 mt-2 w-48 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none"
         >
             <div class="px-1 py-1 dark:bg-slate-800">
-                <MenuItem v-slot="{ active }">
+                <!-- <MenuItem v-slot="{ active }">
                     <Link :href="route('post.view', post.id)"
                             :class="[
-                            active ? 'bg-indigo-500 text-white' : 'text-gray-900 dark:text-gray-200',
+                            active ? 'bg-indigo-500 text-white' : 'text-gray-900',
                             'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                         ]"
                     >
@@ -36,12 +36,12 @@
                         />
                         Open Post
                     </Link>
-                </MenuItem>
-                <MenuItem v-slot="{ active }">
+                </MenuItem> -->
+                <!-- <MenuItem v-slot="{ active }">
                         <button
                             @click="copyToClipboard"
                             :class="[
-                              active ? 'bg-indigo-500 text-white' : 'text-gray-900 dark:text-gray-200',
+                              active ? 'bg-indigo-500 text-white' : 'text-gray-900',
                               'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                             ]"
                         >
@@ -51,12 +51,12 @@
                             />
                             Copy Post URL
                         </button>
-                </MenuItem>
-                <MenuItem v-if="pinAllowed" v-slot="{ active }">
+                </MenuItem> -->
+                <!-- <MenuItem v-if="pinAllowed" v-slot="{ active }">
                         <button
                             @click="$emit('pin')"
                             :class="[
-                              active ? 'bg-indigo-500 text-white' : 'text-gray-900 dark:text-gray-200',
+                              active ? 'bg-indigo-500 text-white' : 'text-gray-900',
                               'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                             ]"
                         >
@@ -65,7 +65,7 @@
                                 aria-hidden="true" />
                             {{ isPinned ? 'Unpin' : 'Pin' }}
                         </button>
-                </MenuItem>
+                </MenuItem> -->
                 <MenuItem v-if="editAllowed" v-slot="{ active }">
                     <button
                         @click="$emit('edit')"
@@ -149,12 +149,13 @@
         return authUser?.pinned_post_id === props.post.id
     })
 
+    // Emits 
     defineEmits(['edit', 'delete','pin'])
 
     // Uses 
     const authUser = usePage().props.auth.user;    
     const group = usePage().props.group
-
+    console.log(authUser);
     function copyToClipboard() {
 
         // Replace 'your-text-to-copy' with the actual text you want to copy
