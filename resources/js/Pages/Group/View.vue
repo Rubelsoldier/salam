@@ -69,7 +69,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="flex justify-between items-center flex-1 p-4">
+                        <div class="flex flex-wrap justify-between items-center flex-1 p-4">
                             <h2 class="font-bold text-lg">{{ group.name }}</h2>
 
                             <PrimaryButton v-if="!authUser" :href="route('login')">Login to join to this group
@@ -104,7 +104,7 @@
             </div>
             <div class="border-t m-4 mt-0">
                 <TabGroup>
-                    <TabList class="flex bg-white dark:bg-slate-950 dark:text-white">
+                    <TabList class="flex flex-1 flex-wrap bg-white dark:bg-slate-950 dark:text-white">
                         <Tab v-slot="{ selected }" as="template">
                             <TabItem text="Posts" :selected="selected" />
                         </Tab>

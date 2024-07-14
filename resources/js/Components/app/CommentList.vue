@@ -5,10 +5,16 @@
             <img :src="authUser.avatar_url"
                  class="w-[40px] rounded-full border border-2 transition-all hover:border-blue-500 avatar-image"/>
         </Link>
-        <div class="flex flex-1">
-            <InputTextarea v-model="newCommentText" placeholder="Enter your comment here" rows="1"
-                           class="w-full max-h-[160px] resize-none rounded-r-none"></InputTextarea>
-            <IndigoButton @click="createComment" class="rounded-l-none w-[100px] ">Submit</IndigoButton>
+        <div class="flex flex-1 items-center gap-1">
+            <InputTextarea v-model="newCommentText" placeholder="comment .." rows="1"
+                        class="w-full max-h-[160px] resize-none rounded-r-none">
+            </InputTextarea>
+            
+            <PaperAirplaneIcon 
+                @click="createComment"
+                class="w-5 h-5"
+            />
+            
         </div>
     </div>
     <div>
@@ -36,7 +42,7 @@
             </div>
             <div class="pl-10">
                 <div v-if="editingComment && editingComment.id === comment.id">
-                    <InputTextarea v-model="editingComment.comment" placeholder="Enter your comment here"
+                    <InputTextarea v-model="editingComment.comment" placeholder="comment .."
                                    rows="1" class="w-full max-h-[160px] resize-none"></InputTextarea>
 
                     <div class="flex gap-2 justify-end">
@@ -95,6 +101,7 @@ import {usePage, Link} from "@inertiajs/vue3";
 import {ref} from "vue";
 import axiosClient from "@/axiosClient.js";
 import {Disclosure, DisclosureButton, DisclosurePanel} from "@headlessui/vue";
+import { PaperAirplaneIcon } from "@heroicons/vue/24/solid";
   
 const authUser = usePage().props.auth.user;
 const emit = defineEmits(['commentCreate', 'commentDelete']);

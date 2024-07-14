@@ -16,8 +16,16 @@
                     </div>
 
                     <div class="flex items-center gap-3 flex-1">
-                        <TextInput v-model="keywords" placeholder="Search on the website" class="w-full"
-                            @keyup.enter="search" />
+                        <TextInput 
+                            v-model="keywords" 
+                            placeholder="Search on the website"    
+                            class="w-full"
+                            @keyup.enter="search" 
+                        />
+                        <MagnifyingGlassIcon 
+                            class="w-7 h-7 dark:text-white cursor-pointer" 
+                            @click="search"
+                        />
                         <button @click="toggleDarkMode" class="dark:text-white">
                             <MoonIcon class="w-5 h-5" />
                         </button>
@@ -26,14 +34,13 @@
                     <!-- <BellAlertIcon class="w-5 h-5 dark:text-white cursor-pointer" /> -->
 
                     <div class="relative">
-                        <!-- Bell icon with Tailwind CSS classes -->                        
-                    <BellAlertIcon class="w-5 h-5 dark:text-white cursor-pointer" />
-
                         <!-- Notification badge -->
                         <span
                             class="absolute top-0 right-0 inline-flex items-center justify-center px-0.5 py-0.5  text-xs font-bold leading-none text-white bg-red-500 rounded-full">
                             13 <!-- Replace with your dynamic notification count -->
                         </span>
+                        <!-- Bell icon with Tailwind CSS classes -->                        
+                        <BellAlertIcon class="w-4 h-4 mt-2 dark:text-white cursor-pointer" />
                     </div>
 
                     <!-- notification gallery  -->
@@ -162,7 +169,7 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import {Link, router, usePage} from '@inertiajs/vue3';
 import TextInput from '@/Components/TextInput.vue';
-import {BellAlertIcon,MoonIcon} from '@heroicons/vue/24/solid'
+import {BellAlertIcon,MagnifyingGlassIcon,MoonIcon} from '@heroicons/vue/24/solid'
 
 const showingNavigationDropdown = ref(false);
 const keywords = ref(usePage().props.search || '')
@@ -177,8 +184,8 @@ const props = defineProps({
 )
 
 function search() {
-    router.get(route('search', encodeURIComponent(keywords.value)))
-    console.log(route('search'));
+    const trimmedKeywords = keywords.value.trim();
+    router.get(route('search', encodeURIComponent(trimmedKeywords)))
 }
 
 function toggleDarkMode(){
