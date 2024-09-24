@@ -6,7 +6,7 @@
                    class="flex items-start gap-1 py-2 px-2"
             >
                 <img data-v-2c0784b3=""
-                    src="/storage/group-21/dQQroZBOPJeKtBcRJkS5IuJaqiMwERbWT7FkrCOJ.jpg"
+                    src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
                 >
                 <div class="flex-1">
@@ -23,7 +23,7 @@
                    class="flex items-start gap-1 py-2 px-2"
             >
                 <img data-v-2c0784b3=""
-                    src="/storage/group-21/dQQroZBOPJeKtBcRJkS5IuJaqiMwERbWT7FkrCOJ.jpg"
+                    src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
                 >
                 <div class="flex-1">
@@ -40,7 +40,7 @@
                    class="flex items-start gap-1 py-2 px-2"
             >
                 <img data-v-2c0784b3=""
-                    src="/storage/group-21/dQQroZBOPJeKtBcRJkS5IuJaqiMwERbWT7FkrCOJ.jpg"
+                    src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
                 >
                 <div class="flex-1">
@@ -57,7 +57,7 @@
                    class="flex items-start gap-1 py-2 px-2"
             >
                 <img data-v-2c0784b3=""
-                    src="/storage/group-21/dQQroZBOPJeKtBcRJkS5IuJaqiMwERbWT7FkrCOJ.jpg"
+                    src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
                 >
                 <div class="flex-1">
@@ -74,7 +74,7 @@
                    class="flex items-start gap-1 py-2 px-2"
             >
                 <img data-v-2c0784b3=""
-                    src="/storage/group-21/dQQroZBOPJeKtBcRJkS5IuJaqiMwERbWT7FkrCOJ.jpg"
+                    src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
                 >
                 <div class="flex-1">
@@ -91,7 +91,7 @@
                    class="flex items-start gap-1 py-2 px-2"
             >
                 <img data-v-2c0784b3=""
-                    src="/storage/group-21/dQQroZBOPJeKtBcRJkS5IuJaqiMwERbWT7FkrCOJ.jpg"
+                    src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
                 >
                 <div class="flex-1">
@@ -108,7 +108,7 @@
                    class="flex items-start gap-1 py-2 px-2"
             >
                 <img data-v-2c0784b3=""
-                    src="/storage/group-21/dQQroZBOPJeKtBcRJkS5IuJaqiMwERbWT7FkrCOJ.jpg"
+                    src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
                 >
                 <div class="flex-1">
@@ -125,7 +125,7 @@
                 class="flex items-start gap-1 py-2 px-2"
             >
                 <img data-v-2c0784b3=""
-                    src="/storage/group-21/dQQroZBOPJeKtBcRJkS5IuJaqiMwERbWT7FkrCOJ.jpg"
+                    src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
                 >
                 <div class="flex-1">
@@ -142,7 +142,7 @@
                    class="flex items-start gap-1 py-2 px-2"
             >
                 <img data-v-2c0784b3=""
-                    src="/storage/group-21/dQQroZBOPJeKtBcRJkS5IuJaqiMwERbWT7FkrCOJ.jpg"
+                    src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
                 >
                 <div class="flex-1">
@@ -159,7 +159,7 @@
                    class="flex items-start gap-1 py-2 px-2"
             >
                 <img data-v-2c0784b3=""
-                    src="/storage/group-21/dQQroZBOPJeKtBcRJkS5IuJaqiMwERbWT7FkrCOJ.jpg"
+                    src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
                 >
                 <div class="flex-1">
@@ -174,7 +174,7 @@
         <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
             <a class="flex items-start gap-1 py-2 px-2" href="http://localhost/g/vue-js-developers">
                 <img data-v-2c0784b3=""
-                    src="/storage/group-21/dQQroZBOPJeKtBcRJkS5IuJaqiMwERbWT7FkrCOJ.jpg"
+                    src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
                 >
                 <div class="flex-1">
@@ -189,7 +189,7 @@
         <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
             <a class="flex items-start gap-1 py-2 px-2" href="http://localhost/g/vue-js-developers">
                 <img data-v-2c0784b3=""
-                    src="/storage/group-21/dQQroZBOPJeKtBcRJkS5IuJaqiMwERbWT7FkrCOJ.jpg"
+                    src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
                 >
                 <div class="flex-1">
@@ -204,7 +204,7 @@
         <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
             <a class="flex items-start gap-1 py-2 px-2" href="http://localhost/g/vue-js-developers">
                 <img data-v-2c0784b3=""
-                    src="/storage/group-21/dQQroZBOPJeKtBcRJkS5IuJaqiMwERbWT7FkrCOJ.jpg"
+                    src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
                 >
                 <div class="flex-1">
@@ -219,7 +219,7 @@
         <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
             <a class="flex items-start gap-1 py-2 px-2" href="http://localhost/g/vue-js-developers">
                 <img data-v-2c0784b3=""
-                    src="/storage/group-21/dQQroZBOPJeKtBcRJkS5IuJaqiMwERbWT7FkrCOJ.jpg"
+                    src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
                 >
                 <div class="flex-1">
@@ -235,7 +235,7 @@
         <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
             <a class="flex items-start gap-1 py-2 px-2" href="http://localhost/g/vue-js-developers">
                 <img data-v-2c0784b3=""
-                    src="/storage/group-21/dQQroZBOPJeKtBcRJkS5IuJaqiMwERbWT7FkrCOJ.jpg"
+                    src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
                 >
                 <div class="flex-1">
@@ -251,7 +251,7 @@
         <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
             <a class="flex items-start gap-1 py-2 px-2" href="http://localhost/g/vue-js-developers">
                 <img data-v-2c0784b3=""
-                    src="/storage/group-21/dQQroZBOPJeKtBcRJkS5IuJaqiMwERbWT7FkrCOJ.jpg"
+                    src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
                 >
                 <div class="flex-1">
@@ -267,7 +267,7 @@
         <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
             <a class="flex items-start gap-1 py-2 px-2" href="http://localhost/g/vue-js-developers">
                 <img data-v-2c0784b3=""
-                    src="/storage/group-21/dQQroZBOPJeKtBcRJkS5IuJaqiMwERbWT7FkrCOJ.jpg"
+                    src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
                 >
                 <div class="flex-1">
@@ -282,7 +282,7 @@
         <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
             <a class="flex items-start gap-1 py-2 px-2" href="http://localhost/g/vue-js-developers">
                 <img data-v-2c0784b3=""
-                    src="/storage/group-21/dQQroZBOPJeKtBcRJkS5IuJaqiMwERbWT7FkrCOJ.jpg"
+                    src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
                 >
                 <div class="flex-1">
@@ -299,7 +299,7 @@
             class="flex items-start gap-1 py-2 px-2"
         >
             <img data-v-2c0784b3=""
-                src="/storage/group-21/dQQroZBOPJeKtBcRJkS5IuJaqiMwERbWT7FkrCOJ.jpg"
+                src="/img/default_cover.jpg"
                 class="w-[32px] rounded-full avatar-image"
             >
             <div class="flex-1">
