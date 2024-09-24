@@ -130,7 +130,7 @@
                                 <UserListItem v-for="user of followers" :user="user" :key="user.id"
                                     class="shadow rounded-lg" />
                             </div>
-                            <div v-else class="text-center py-8">
+                            <div v-else class="text-center py-8 dark:text-gray-200">
                                 User does not have followers.
                             </div>
                         </TabPanel>

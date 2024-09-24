@@ -1,5 +1,4 @@
 <template>
-    <!-- <pre>{{post.comments.length}}</pre> -->
     <div v-if="authUser" class="flex gap-2 mb-3">
         <Link :href="route('profile', authUser.username)">
             <img :src="authUser.avatar_url"

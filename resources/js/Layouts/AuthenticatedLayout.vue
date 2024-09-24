@@ -7,25 +7,27 @@
                     <div class="flex mr-2">
                         <!-- Logo -->
                         <div class="shrink-0 flex items-center">
-                            <Link :href="route('dashboard')">
-                            <ApplicationLogo :logoBlack="logoBlack" :logoWhite="logoWhite"
-                                class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-600" />
+                            <Link :href="route('dashboard')">                            
+                                <!-- logo dark/light mode  -->
+                                <img  v-if="isDarkMode" 
+                                    src="/img/white-logo.png" 
+                                    alt="Dark Logo" 
+                                    class="w-10 h-10 mx-auto block mb-4"
+                                />
+                                <img v-else 
+                                    src="/img/black-logo.png" 
+                                    alt="Light Logo" 
+                                    class="w-7 h-7 mx-auto block mb-4"
+                                />  
                             </Link>
                         </div>
 
                     </div>
 
                     <div class="flex items-center gap-3 flex-1">
-                        <TextInput 
-                            v-model="keywords" 
-                            placeholder="Search on the website"    
-                            class="w-full"
-                            @keyup.enter="search" 
-                        />
-                        <MagnifyingGlassIcon 
-                            class="w-7 h-7 dark:text-white cursor-pointer" 
-                            @click="search"
-                        />
+                        <TextInput v-model="keywords" placeholder="Search on the website" class="w-full"
+                            @keyup.enter="search" />
+                        <MagnifyingGlassIcon class="w-7 h-7 dark:text-white cursor-pointer" @click="search" />
                         <button @click="toggleDarkMode" class="dark:text-white">
                             <MoonIcon class="w-5 h-5" />
                         </button>
@@ -39,7 +41,7 @@
                             class="absolute top-0 right-0 inline-flex items-center justify-center px-0.5 py-0.5  text-xs font-bold leading-none text-white bg-red-500 rounded-full">
                             13 <!-- Replace with your dynamic notification count -->
                         </span>
-                        <!-- Bell icon with Tailwind CSS classes -->                        
+                        <!-- Bell icon with Tailwind CSS classes -->
                         <BellAlertIcon class="w-4 h-4 mt-2 dark:text-white cursor-pointer" />
                     </div>
 
@@ -162,8 +164,8 @@
 </template>
 
 <script setup>
-import {onMounted, ref} from 'vue';
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+import {onMounted, onUnmounted, computed, ref} from 'vue';
+// import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
@@ -172,6 +174,8 @@ import TextInput from '@/Components/TextInput.vue';
 import {BellAlertIcon,MagnifyingGlassIcon,MoonIcon} from '@heroicons/vue/24/solid'
 
 const showingNavigationDropdown = ref(false);
+const isDarkMode = ref(false);
+
 const keywords = ref(usePage().props.search || '')
 const authUser = usePage().props.auth.user;
 const logoBlack = usePage().props.logoBlack;
@@ -188,15 +192,44 @@ function search() {
     router.get(route('search', encodeURIComponent(trimmedKeywords)))
 }
 
-function toggleDarkMode(){
-    const html = window.document.documentElement
-    if (html.classList.contains('dark')) {
-        html.classList.remove('dark')
-        localStorage.setItem('darkMode', '0')
-    } else {
-        html.classList.add('dark')
-        localStorage.setItem('darkMode', '1')
-    }
-}
+// function toggleDarkMode(){
+//     const html = window.document.documentElement
+//     if (html.classList.contains('dark')) {
+//         html.classList.remove('dark')
+//         localStorage.setItem('darkMode', '0')
+//         isDarkMode.value = false
+//     } else {
+//         html.classList.add('dark')
+//         localStorage.setItem('darkMode', '1')
+//         isDarkMode.value = true
+//     }
+// }
+
+
+
+const toggleDarkMode = () => {
+  const html = window.document.documentElement;
+  if (html.classList.contains('dark')) {
+    html.classList.remove('dark');
+    localStorage.setItem('darkMode', '0');
+    isDarkMode.value = false;
+  } else {
+    html.classList.add('dark');
+    localStorage.setItem('darkMode', '1');
+    isDarkMode.value = true;
+  }
+};
+
+// Initialize dark mode based on localStorage
+onMounted(() => {
+  const darkMode = localStorage.getItem('darkMode');
+  if (darkMode === '1') {
+    document.documentElement.classList.add('dark');
+    isDarkMode.value = true;
+  } else {
+    document.documentElement.classList.remove('dark');
+    isDarkMode.value = false;
+  }
+});
 
 </script>

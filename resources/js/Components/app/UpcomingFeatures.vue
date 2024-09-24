@@ -1,10 +1,11 @@
 <template>
-    <div class="px-3 bg-white dark:bg-slate-950 dark:border-slate-900 dark:text-gray-200 rounded border py-3 overflow-hidden">
+    <div class="px-3 bg-white dark:bg-slate-950 dark:border-slate-900 dark:text-gray-200 rounded border h-full py-3 overflow-hidden">
+        <!-- For mobile  -->
         <div class="block lg:hidden">
             <Disclosure v-slot="{ open }">
                 <DisclosureButton class="w-full">
                     <div class="flex justify-between items-center">
-                        <h2 class="text-xl font-bold">My Followings</h2>
+                        <h2 class="text-xl font-bold">Upcoming Features</h2>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="w-6 h-6 transition-all"
                              :class="open ? 'rotate-90 transform' : ''">
@@ -13,19 +14,20 @@
                     </div>
                 </DisclosureButton>
                 <DisclosurePanel>
-                    <FollowingListItems :users="users"/>
+                    <UpcomingFeaturesItems />
                 </DisclosurePanel>
             </Disclosure>
         </div>
+        <!-- For desktop  -->
         <div class="h-full overflow-hidden flex-col hidden lg:flex">
-            <h2 class="text-xl font-bold">My Followings</h2>
-            <FollowingListItems :users="users"/>
+            <h2 class="text-xl font-bold">Upcoming Features</h2>
+            <UpcomingFeaturesItems />            
         </div>
     </div>
 </template>
 
 <script setup>
-import FollowingListItems from "@/Components/app/FollowingListItems.vue";
+import UpcomingFeaturesItems from "@/Components/app/UpcomingFeaturesItems.vue";
 import {Disclosure, DisclosureButton, DisclosurePanel} from "@headlessui/vue";
 
 defineProps({

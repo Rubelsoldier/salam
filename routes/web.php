@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FeaturesController;
 
 
     Route::get('/', [HomeController::class, 'index'])
@@ -30,7 +31,7 @@ use App\Http\Controllers\ProfileController;
     Route::prefix('/group')->group(function () { 
 
         Route::post('/', [GroupController::class, 'store'])
-        ->name('group.create');
+            ->name('group.create'); 
     
         Route::put('/{group:slug}', [GroupController::class, 'update'])
             ->name('group.update');
@@ -113,6 +114,40 @@ use App\Http\Controllers\ProfileController;
 
     Route::get('/search/{search?}', [SearchController::class, 'search'])
         ->name('search');
+
+    // Upcoming features 
+
+    Route::prefix('/features')->group(function () { 
+        
+        Route::get('/plan', [FeaturesController::class, 'plan'])
+            ->name('feature.plan');
+
+        Route::get('/productivity', [FeaturesController::class, 'productivity'])
+            ->name('feature.productivity');
+
+        Route::get('/starflix', [FeaturesController::class, 'starflix'])
+            ->name('feature.starflix');
+
+        Route::get('/network', [FeaturesController::class, 'network'])
+            ->name('feature.network');
+
+        Route::get('/ecommerce', [FeaturesController::class, 'ecommerce'])
+            ->name('feature.ecommerce');
+
+        Route::get('/mental-health', [FeaturesController::class, 'mentalHealth'])
+            ->name('feature.mental.health');
+
+        Route::get('/zakat', [FeaturesController::class, 'zakat'])
+            ->name('feature.zakat');
+
+        Route::get('/ijma', [FeaturesController::class, 'ijma'])
+            ->name('feature.ijma');
+
+        Route::get('/boycott', [FeaturesController::class, 'boycott'])
+            ->name('feature.boycott');
+
+    }); 
+
             
 });
         
