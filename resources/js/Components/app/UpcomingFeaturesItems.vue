@@ -172,7 +172,9 @@
         </div>
         
         <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
-            <a class="flex items-start gap-1 py-2 px-2" href="http://localhost/g/vue-js-developers">
+            <Link :href="route('feature.mental.health')"
+                   class="flex items-start gap-1 py-2 px-2"
+            >
                 <img data-v-2c0784b3=""
                     src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
@@ -183,11 +185,13 @@
                     </div>
                     <div class="text-xs text-gray-400">Offer resources and support for mental health, including connections to professional help.</div>
                 </div>
-            </a>
+            </Link>
         </div>
         
         <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
-            <a class="flex items-start gap-1 py-2 px-2" href="http://localhost/g/vue-js-developers">
+            <Link :href="route('feature.mental.health')"
+                   class="flex items-start gap-1 py-2 px-2"
+            >
                 <img data-v-2c0784b3=""
                     src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
@@ -198,11 +202,13 @@
                     </div>
                     <div class="text-xs text-gray-400">Offer resources and support for mental health, including connections to professional help.</div>
                 </div>
-            </a>
+            </Link>
         </div>
         
         <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
-            <a class="flex items-start gap-1 py-2 px-2" href="http://localhost/g/vue-js-developers">
+            <Link :href="route('feature.mental.health')"
+                   class="flex items-start gap-1 py-2 px-2"
+            >
                 <img data-v-2c0784b3=""
                     src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
@@ -213,11 +219,13 @@
                     </div>
                     <div class="text-xs text-gray-400">Offer resources and support for mental health, including connections to professional help.</div>
                 </div>
-            </a>
+            </Link>
         </div>
 
         <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
-            <a class="flex items-start gap-1 py-2 px-2" href="http://localhost/g/vue-js-developers">
+            <Link :href="route('feature.mental.health')"
+                   class="flex items-start gap-1 py-2 px-2"
+            >
                 <img data-v-2c0784b3=""
                     src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
@@ -228,12 +236,14 @@
                     </div>
                     <div class="text-xs text-gray-400">Find your friends who you know or want to know</div>
                 </div>
-            </a>
+            </Link>
         </div>
 
         
         <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
-            <a class="flex items-start gap-1 py-2 px-2" href="http://localhost/g/vue-js-developers">
+            <Link :href="route('feature.mental.health')"
+                   class="flex items-start gap-1 py-2 px-2"
+            >
                 <img data-v-2c0784b3=""
                     src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
@@ -244,12 +254,14 @@
                     </div>
                     <div class="text-xs text-gray-400">Find your friends who you know or want to know</div>
                 </div>
-            </a>
+            </Link>
         </div>
 
         
         <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
-            <a class="flex items-start gap-1 py-2 px-2" href="http://localhost/g/vue-js-developers">
+            <Link :href="route('feature.mental.health')"
+                   class="flex items-start gap-1 py-2 px-2"
+            >
                 <img data-v-2c0784b3=""
                     src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
@@ -260,12 +272,14 @@
                     </div>
                     <div class="text-xs text-gray-400">Find your friends who you know or want to know</div>
                 </div>
-            </a>
+            </Link>
         </div>
 
         
         <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
-            <a class="flex items-start gap-1 py-2 px-2" href="http://localhost/g/vue-js-developers">
+            <Link :href="route('feature.mental.health')"
+                   class="flex items-start gap-1 py-2 px-2"
+            >
                 <img data-v-2c0784b3=""
                     src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
@@ -276,11 +290,13 @@
                     </div>
                     <div class="text-xs text-gray-400">Find your friends who you know or want to know</div>
                 </div>
-            </a>
+            </Link>
         </div>                        
 
         <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
-            <a class="flex items-start gap-1 py-2 px-2" href="http://localhost/g/vue-js-developers">
+            <Link :href="route('feature.mental.health')"
+                   class="flex items-start gap-1 py-2 px-2"
+            >
                 <img data-v-2c0784b3=""
                     src="/img/default_cover.jpg"
                     class="w-[32px] rounded-full avatar-image"
@@ -291,7 +307,7 @@
                     </div>
                     <div class="text-xs text-gray-400">Find your friends who you know or want to know</div>
                 </div>
-            </a>
+            </Link>
         </div>
 
     <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">

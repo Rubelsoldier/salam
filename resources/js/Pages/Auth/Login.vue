@@ -4,24 +4,21 @@
         <Head title="Log in" />
         <div class="text-center dark:text-gray-500">
             <!-- logo dark/light mode  -->
-            
-                <img  v-if="isDarkMode" 
-                      src="/img/white-logo.png" 
-                      alt="Dark Logo" 
-                      class="w-10 h-10 mx-auto block mb-4"
-                />
-                <img v-else 
-                     src="/img/black-logo.png" 
-                     alt="Light Logo" 
-                     class="w-7 h-7 mx-auto block mb-4"
-                />            
+
+            <img v-if="isDarkMode" src="/img/white-logo.png" alt="Dark Logo" class="w-10 h-10 mx-auto block mb-4" />
+            <img v-else src="/img/black-logo.png" alt="Light Logo" class="w-7 h-7 mx-auto block mb-4" />
 
             <h1 class="text-2xl text-center">Login</h1>
             <span class="text-gray-400 text-sm">or</span>
             <div class="flex justify-center">
-                <Link :href="route('register')" class="inline-block hover:underline dark:text-gray-200">
-                create new account
+                <Link :href="route('register')" class="inline-block underline dark:text-gray-200 hover:text-gray-400">
+                    create new account
                 </Link>
+            </div>
+            <div>
+                <p class="dark:text-blue-200">To login,use</p>
+                <p class="dark:text-gray-300">Email: guest@saalam.xyz</p>
+                <p class="dark:text-gray-300">Pass: 11223344</p>
             </div>
         </div>
 
@@ -85,17 +82,17 @@ import { ref, onMounted, onUnmounted } from 'vue';
 const isDarkMode = ref(document.documentElement.classList.contains('dark'));
 
 const updateDarkMode = () => {
-  isDarkMode.value = document.documentElement.classList.contains('dark');
+    isDarkMode.value = document.documentElement.classList.contains('dark');
 };
 
 onMounted(() => {
-  window.addEventListener('DOMContentLoaded', updateDarkMode);
-  window.addEventListener('change', updateDarkMode);
+    window.addEventListener('DOMContentLoaded', updateDarkMode);
+    window.addEventListener('change', updateDarkMode);
 });
 
 onUnmounted(() => {
-  window.removeEventListener('DOMContentLoaded', updateDarkMode);
-  window.removeEventListener('change', updateDarkMode);
+    window.removeEventListener('DOMContentLoaded', updateDarkMode);
+    window.removeEventListener('change', updateDarkMode);
 });
 
 // for dark mode/light mode logo enabling starts 
