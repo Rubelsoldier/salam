@@ -4,7 +4,7 @@
             <TextInput :model-value="searchKeyword" placeholder="Type to search" class="w-full"/>
             <button @click="showNewGroupModal = true"
                     class="text-sm bg-indigo-500 hover:bg-indigo-600 text-white rounded py-1 px-2 w-[120px]">
-                new group
+                <span class="text-xs">Create new group</span>
             </button>
         </div>
 
