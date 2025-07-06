@@ -103,7 +103,7 @@
             </Link>
         </div>
 
-        <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
+        <!-- <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
             <Link :href="route('feature.ijma')"
                    class="flex items-start gap-1 py-2 px-2"
             >
@@ -118,9 +118,9 @@
                     <div class="text-xs text-gray-400">Special AI designed for mental health</div>
                 </div>
             </Link>
-        </div>
+        </div> -->
 
-        <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
+        <!-- <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
             <Link :href="route('feature.boycott')"
                 class="flex items-start gap-1 py-2 px-2"
             >
@@ -135,7 +135,7 @@
                     <div class="text-xs text-gray-400">Special AI designed for mental health</div>
                 </div>
             </Link>
-        </div>
+        </div> -->
 
         <div class="cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800">
             <Link :href="route('feature.productivity')" 

@@ -17,8 +17,20 @@
             </div>
             <div>
                 <p class="dark:text-blue-200">To login,use</p>
-                <p class="dark:text-gray-300">Email: guest@saalam.xyz</p>
-                <p class="dark:text-gray-300">Pass: 11223344</p>
+                <div class="mt-2 mb-2 m-auto w-64">
+                    <div class="flex items-center dark:text-gray-400 text-xs">
+                        <span>Email: demo-login@saalam.site</span>
+                        <button @click="copyToClipboard('demo-login@saalam.site', 'email')" class="ml-2 text-xs underline" title="Copy email">
+                            {{ copied.email ? 'copied' : 'copy' }}
+                        </button>
+                    </div>
+                    <div class="flex items-center dark:text-gray-400 text-xs">
+                        <span>Pass: 11111111 (eight 1's)</span>
+                        <button @click="copyToClipboard('11111111', 'pass')" class="ml-2 text-xs underline" title="Copy password">
+                            {{ copied.pass ? 'copied' : 'copy' }}
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -118,4 +130,16 @@ const submit = () => {
         onFinish: () => form.reset('password'),
     });
 };
+
+// Clipboard copy functionality with feedback
+
+const copied = ref({ email: false, pass: false });
+
+function copyToClipboard(text, type) {
+    navigator.clipboard.writeText(text);
+    copied.value[type] = true;
+    setTimeout(() => {
+        copied.value[type] = false;
+    }, 1200);
+}
 </script>
