@@ -10,6 +10,14 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FeaturesController;
+use Illuminate\Support\Facades\Mail;
+
+Route::get('/mail-test', function () {
+    Mail::raw('This is a test email from Laravel via Mailgun SMTP.', function ($message) {
+        $message->to('cto@saalam.site')->subject('Test Mailgun SMTP');
+    });
+    return 'Test email sent!';
+});
 
 
     Route::get('/', [HomeController::class, 'index'])
