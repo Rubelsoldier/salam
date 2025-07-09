@@ -16,7 +16,7 @@ Route::get('/mail-test', function () {
     Mail::raw('This is a test email from Laravel via Mailgun SMTP.', function ($message) {
         $message->to('cto@saalam.site')->subject('Test Mailgun SMTP');
     });
-    return 'Test email sent!';
+    return 'Test email sent!!';
 });
 
 
