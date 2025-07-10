@@ -47,7 +47,6 @@ return [
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
-
         'mailgun' => [
             'transport' => 'smtp',
             'host' => env('MAIL_HOST', 'smtp.eu.mailgun.org'),
@@ -57,8 +56,7 @@ return [
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN')
-        ],
-                
+        ],                
         'ses' => [
             'transport' => 'ses',
         ],
