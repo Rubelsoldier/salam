@@ -29,6 +29,7 @@ in sub comments
 ====================== To fix ===================
 
 preview link exceeded the div
+default avatar kabahiamge removing
 
 
 
