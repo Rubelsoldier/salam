@@ -29,6 +29,7 @@ in sub comments
 ====================== To fix ===================
 
 preview link exceeded the div
+default avatar kabahiamge removing
 
 
 
@@ -57,3 +58,14 @@ Lec: 34. Load more functionality. 1:04:00
 Data object chilo or Arrray, it doesn't 
 
 
+================== tasks, to do from moving project ==================
+- removing node_modules, vendor folder
+- direct copy -> destination folder
+- removing docker yml file,  etc
+- composer install, npm intall
+- db connection 
+- username, pass blank,port, db creation from tableplus
+- php artisan migrate 
+- all tables will be in the databse
+- mailtrap connection, pass copy using the copy button
+- all ok now.

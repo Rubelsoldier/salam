@@ -16,7 +16,7 @@
                 </Link>
             </div>
             <div>
-                <p class="dark:text-blue-200">To login,use</p>
+                <p class="dark:text-blue-200">If you feel lazy, use</p>
                 <div class="mt-2 mb-2 m-auto w-64">
                     <div class="flex items-center dark:text-gray-400 text-xs">
                         <span>Email: demo-login@saalam.site</span>

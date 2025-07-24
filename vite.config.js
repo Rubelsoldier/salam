@@ -17,4 +17,8 @@ export default defineConfig({
             },
         }),
     ],
+    server: {
+        cors: true,
+        host: 'localhost', // or '0.0.0.0' if you want to access from other devices
+    },
 });
